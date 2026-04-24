@@ -1,0 +1,42 @@
+[
+  {
+    "slug": "iteotwamtvwto",
+    "title": "It's The End of the World and my TV Won't Turn Off",
+    "year": 2025,
+    "materials": "Digital, Interactive",
+    "description": "A series of generative art pieces that explore the relationship between technology and human behavior.",
+    "imageSrc": "resources/img/ITEOTWAMTVWTO_2.jpg",
+    "imageAlt": "It's The End of the World",
+    "href": "/portfolio/iteotwamtvwto"
+  },
+  {
+    "slug": "keeping-reciepts",
+    "title": "Keeping Reciepts",
+    "year": 2025,
+    "materials": "Digital, Interactive",
+    "description": "A series of generative art pieces that explore the relationship between technology and human behavior.",
+    "imageSrc": "resources/img/KeepingRecieptsMain.JPG",
+    "imageAlt": "Keeping Reciepts",
+    "href": "/portfolio/keeping-reciepts"
+  },
+  {
+    "slug": "name-change-game",
+    "title": "The New York Name Change Game",
+    "year": 2024,
+    "materials": "Web-Based",
+    "description": "A series of generative art pieces that explore the relationship between technology and human behavior.",
+    "imageSrc": "resources/img/TNYNCG.JPG",
+    "imageAlt": "The New York Name Change Game",
+    "href": "/portfolio/name-change-game"
+  },
+  {
+    "slug": "chopom",
+    "title": "Chopom",
+    "year": 2024,
+    "materials": "Metal, Arduino, Microphone, Receipt Printer, ChatGPT API",
+    "description": "A series of generative art pieces that explore the relationship between technology and human behavior.",
+    "imageSrc": "resources/img/chopom.JPG",
+    "imageAlt": "Chopom",
+    "href": "/portfolio/chopom"
+  }
+]

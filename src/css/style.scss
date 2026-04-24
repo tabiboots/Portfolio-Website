@@ -150,7 +150,7 @@ a:active {
   object-position: center;
 }
 
-#content-container-main-image {
+.content-container-main-image {
   max-height: 450px;
   max-width: 450px;
   object-fit: contain;
@@ -163,15 +163,15 @@ a:active {
   padding-left: 6rem;
 }
 
-#display-block-description {
+.display-block-description {
   text-wrap: wrap;
 }
 
-#display-block-year {
+.display-block-year {
   font-weight: bold;
 }
 
-#display-block-title {
+.display-block-title {
   align-self: start;
   font-weight: bold;
 }
