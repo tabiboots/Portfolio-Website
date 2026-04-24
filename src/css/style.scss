@@ -9,6 +9,8 @@
 
 body {
   font-family: 'GT America';
+  margin: 0;
+  padding: 0;
 }
 
 a{
@@ -35,15 +37,19 @@ a:active {
 }
 
 #header {
-  margin-top: 3.0rem;
-    width: 100%;
+  position: fixed;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255);
   flex-wrap: nowrap;
   display: flex;
+  overflow: hidden;
+  height: 88px;
 }
 
 #interrobang{
-  position: relative;
-  z-index: 12;
+  position: fixed;
+  top: 25px;
   width: 100px;
   width: 8.33333rem;
   margin-left: 3rem;
@@ -51,12 +57,14 @@ a:active {
 }
 
 #nav-container {
-  margin-left: 3rem;
-  margin-right: 3rem;
+  position: fixed;
+  margin-left: 15rem;
+  margin-right: 10rem;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  width: calc(100% - 200px);
-  width: calc(100% - 16.66667rem);
+  width: calc(100% - 17.5rem);
+  height: 80%;
+  overflow: hidden;
 }
 
 #nav-button-container {
@@ -66,6 +74,7 @@ a:active {
   align-items: center;
   border-bottom: 1px solid rgb(0, 0, 0);
   padding-bottom: 10px;
+  padding-top: 60px;
 }
 
 #nav-button-container-links {
@@ -86,21 +95,26 @@ a:active {
 
 #content-container {
   display: flex;
-  margin-top: 2.0rem;
+  margin-top: 0;
   margin-left: 3rem;
-  margin-right: 3rem;
+  margin-right: 2.5rem;
   flex-wrap: nowrap;
+  padding-top: 7.25rem;
 }
 
 #content-container-side {
   display: flex;
   flex-flow: row wrap;
-  position: relative;
+  position: fixed;
+  top: 12rem;
+  left: 3rem;
   z-index: 12;
   width: 100px;
   width: 8.33333rem;
   align-items: start;
   justify-content: center;
+  align-self: flex-start;
+  height: fit-content;
   white-space: nowrap;
 }
 
@@ -118,12 +132,11 @@ a:active {
   display: flex;
   flex-direction: column;
   justify-content: top;
-  margin-left: 4.16667rem;
+  margin-left: 4.16667rem + 7.91rem;
   width: 100%;
   align-items: center;
   justify-content: start;
   white-space: nowrap;
-  border-top: 1px solid rgb(0, 0, 0);
 }
 
 .display-block {
@@ -161,6 +174,7 @@ a:active {
   display: flex;
   flex-direction: column;
   padding-left: 6rem;
+  padding-right: 8rem;
 }
 
 .display-block-description {
@@ -174,4 +188,28 @@ a:active {
 .display-block-title {
   align-self: start;
   font-weight: bold;
+}
+
+
+.about-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
+}
+
+.headshot-image {
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.about-text {
+  margin-left: 12rem;
+  margin-right: 12rem;
+  font-size: 20px;
+  text-align: center;
+  text-wrap: wrap;
 }
