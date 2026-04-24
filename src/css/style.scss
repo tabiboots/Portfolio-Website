@@ -1,0 +1,177 @@
+
+
+@font-face {
+  font-family: 'GT America';
+  src: url('../../resources/fonts/GT-America-Standard-Regular-Trial.otf') format('opentype');
+  font-style: normal;
+  font-weight: 400;
+}
+
+body {
+  font-family: 'GT America';
+}
+
+a{
+  font-size: 14px;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+a:hover,
+a:active {
+  color: #cc0000;
+  text-decoration: none;
+}
+
+.title{
+  font-family: 'GT America';
+  font-weight: 200;
+  text-align: center;
+  font-size: 24px;
+}
+#main-container {
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  flex-direction: column;
+}
+
+#header {
+  margin-top: 3.0rem;
+    width: 100%;
+  flex-wrap: nowrap;
+  display: flex;
+}
+
+#interrobang{
+  position: relative;
+  z-index: 12;
+  width: 100px;
+  width: 8.33333rem;
+  margin-left: 3rem;
+  line-height: 0;
+}
+
+#nav-container {
+  margin-left: 3rem;
+  margin-right: 3rem;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: calc(100% - 200px);
+  width: calc(100% - 16.66667rem);
+}
+
+#nav-button-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  padding-bottom: 10px;
+}
+
+#nav-button-container-links {
+  display: flex;
+  width: 30%;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#nav-button-container-socials {
+  width: 15%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#content-container {
+  display: flex;
+  margin-top: 2.0rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  flex-wrap: nowrap;
+}
+
+#content-container-side {
+  display: flex;
+  flex-flow: row wrap;
+  position: relative;
+  z-index: 12;
+  width: 100px;
+  width: 8.33333rem;
+  align-items: start;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+#content-container-side-about {
+  font-family: 'GT America';
+  writing-mode: vertical-rl;
+  -webkit-font-feature-settings: normal;
+  font-feature-settings: normal;
+  display: inline-block;
+  text-wrap: wrap;
+  text-align: left;
+}
+
+#content-container-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  margin-left: 4.16667rem;
+  width: 100%;
+  align-items: center;
+  justify-content: start;
+  white-space: nowrap;
+  border-top: 1px solid rgb(0, 0, 0);
+}
+
+.display-block {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  width: 100%;
+  height: 100%;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  margin-left: 4.16667rem;
+  margin-right: 4.16667rem;
+}
+
+.display-block-image-container {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  padding-left: 3rem;
+  object-position: center;
+}
+
+#content-container-main-image {
+  max-height: 450px;
+  max-width: 450px;
+  object-fit: contain;
+  object-position: center;
+}
+.display-block-text-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 6rem;
+}
+
+#display-block-description {
+  text-wrap: wrap;
+}
+
+#display-block-year {
+  font-weight: bold;
+}
+
+#display-block-title {
+  align-self: start;
+  font-weight: bold;
+}
