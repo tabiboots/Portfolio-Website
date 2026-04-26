@@ -34,7 +34,7 @@ a:active {
   display: flex;
   background-color: rgb(255, 255, 255);
   flex-direction: column;
-  margin-right: 7.5rem;
+  margin-right: clamp(0.75rem, 6vw, 7.5rem);
 }
 
 #header {
@@ -52,18 +52,17 @@ a:active {
   position: fixed;
   top: 25px;
   width: 100px;
-  width: 8.33333rem;
-  margin-left: 3rem;
+  width: clamp(72px, 8vw, 8.33333rem);
+  margin-left: clamp(0.75rem, 3vw, 3rem);
   line-height: 0;
 }
 
 #nav-container {
   position: fixed;
-  margin-left: 15rem;
-  margin-right: 15rem;
+  margin-left: clamp(5.5rem, 12vw, 15rem);
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  width: calc(100% - 22.5rem);
+  width: 82vw;
   height: 90px;
   overflow: hidden;
 }
@@ -73,6 +72,7 @@ a:active {
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
+  margin-left: 2.7rem;
   border-bottom: 1px solid rgb(0, 0, 0);
   padding-bottom: 10px;
   padding-top: 60px;
@@ -97,20 +97,20 @@ a:active {
 #content-container {
   display: flex;
   margin-top: 0;
-  margin-left: 3rem;
+  margin-left: clamp(0.75rem, 3vw, 3rem);
   flex-wrap: nowrap;
-  padding-top: 7.25rem;
+  padding-top: clamp(5.5rem, 9vw, 7.25rem);
 }
 
 #content-container-side {
   display: flex;
   flex-flow: row wrap;
   position: fixed;
-  top: 12rem;
-  left: 3rem;
+  top: clamp(8rem, 15vw, 12rem);
+  left: clamp(0.75rem, 3vw, 3rem);
   z-index: 12;
   width: 100px;
-  width: 8.33333rem;
+  width: clamp(72px, 8vw, 8.33333rem);
   align-items: start;
   justify-content: center;
   align-self: flex-start;
@@ -120,6 +120,7 @@ a:active {
 
 #content-container-side-about {
   font-family: 'GT America';
+  font-size: clamp(0.75rem, 1.1vw, 1rem);
   writing-mode: vertical-rl;
   -webkit-font-feature-settings: normal;
   font-feature-settings: normal;
@@ -131,8 +132,8 @@ a:active {
 #content-container-main {
   display: flex;
   flex-direction: column;
-  margin-left: 4.16667rem + 7.91rem;
-  width: 88.7%;
+  margin-left: clamp(6.5rem, 12vw, 12.07667rem);
+  width: 80vw;
   align-items: center;
   justify-content: start;
   white-space: nowrap;
@@ -146,10 +147,10 @@ a:active {
   border-bottom: 1px solid rgb(0, 0, 0);
   width: 100%;
   height: 100%;
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-  margin-left: 4.16667rem;
-  margin-right: 4.16667rem;
+  padding-top: clamp(0.75rem, 2vw, 1.5rem);
+  padding-bottom: clamp(0.75rem, 2vw, 1.5rem);
+  margin-left: clamp(0.75rem, 4vw, 4.16667rem);
+  margin-right: clamp(0.75rem, 4vw, 4.16667rem);
 }
 
 .display-block-image-container {
@@ -158,22 +159,36 @@ a:active {
   width: 80%;
   height: 80%;
   object-fit: contain;
-  padding-left: 3rem;
+  padding-left: clamp(0.5rem, 2.5vw, 3rem);
   object-position: center;
 }
 
+.display-block-image-container > img,
 .content-container-main-image {
   max-height: 450px;
   max-width: 450px;
   object-fit: contain;
   object-position: center;
 }
+
+.display-block-image-container > video,
+.content-container-main-video {
+  max-height: 450px;
+  max-width: 450px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  background: transparent;
+  border: 0;
+  outline: none;
+}
 .display-block-text-container {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding-left: 6rem;
-  padding-right: 8rem;
+  padding-left: clamp(1rem, 4vw, 6rem);
+  padding-right: clamp(1rem, 5vw, 8rem);
 }
 
 .display-block-description {
@@ -195,40 +210,57 @@ a:active {
 
 .about-container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 8rem;
-  margin-left: 2rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: clamp(1.25rem, 3vw, 3rem);
+  width: min(100%, 1200px);
+  margin-top: clamp(2rem, 6vw, 8rem);
+  margin-left: clamp(0.5rem, 2vw, 2rem);
+  margin-right: clamp(0.5rem, 2vw, 2rem);
 }
+.about-headshot-container,
 .headshot-image-container {
-  width: 400px;
-  height: 400px;
+  flex: 1 1 clamp(220px, 35vw, 400px);
+  max-width: 400px;
 }
 .headshot-image {
-
+  display: block;
+  width: 100%;
   max-width: 400px;
+  height: auto;
   aspect-ratio: 1 / 1;
   object-fit: contain;
   object-position: center;
 }
 
 .about-text-container {
+  flex: 2 1 320px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-left: 2rem;
-  margin-right: 5rem;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 0;
+  max-width: 70ch;
 }
 .about-title {
-  font-size: 40px;
-  text-align: center;
+  margin: 0 0 1rem;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  text-align: left;
   text-wrap: wrap;
 }
 .about-text {
-  font-size: 20px;
+  margin: 0;
+  font-size: clamp(1rem, 1.7vw, 1.25rem);
+  line-height: 1.5;
   text-align: left;
   text-wrap: wrap;
+}
+
+@media (min-width: 1024px) {
+  .about-container {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
 }
 
 .work-detail-title {
@@ -284,8 +316,7 @@ a:active {
 
 .work-detail-gallery {
   width: 100%;
-  height: 80%;
-  margin-top: 1rem;
+  height: 100%;
   margin-bottom: 0.5rem;
 }
 
@@ -329,6 +360,7 @@ a:active {
   display: none;
 }
 
+.work-detail-gallery-track > img,
 .work-detail-gallery-image {
   flex: 0 0 calc((100% - 2rem) / 3);
   width: calc((100% - 2rem) / 3);
@@ -337,19 +369,51 @@ a:active {
   object-position: center;
 }
 
+.work-detail-gallery-track > video,
 .work-detail-gallery-video {
   flex: 0 0 calc((100% - 2rem) / 2);
   width: calc((100% - 2rem) / 2);
   height: clamp(180px, 22vw, 320px);
   object-fit: contain;
   object-position: center;
-  background-color: #000;
-  
+  background: transparent;
+  border: 0;
+  outline: none;
 }
 
-.content-container-main-image {
-  max-height: 450px;
-  max-width: 450px;
+.work-detail-gallery-flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.3rem;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+.work-detail-gallery-flex > img,
+.work-detail-gallery-flex-image {
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  max-width: min(100%, 520px);
+  max-height: clamp(180px, 28vw, 360px);
   object-fit: contain;
   object-position: center;
+  display: block;
+}
+
+.work-detail-gallery-flex > video,
+.work-detail-gallery-flex-video {
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  max-width: min(100%, 400px);
+  max-height: clamp(180px, 28vw, 300px);
+  object-fit: contain;
+  object-position: center;
+  background: transparent;
+  border: 0;
+  outline: none;
+  display: block;
 }

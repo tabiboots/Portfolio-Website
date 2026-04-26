@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-26T21:55:19.027Z",
+  "generatedAt": "2026-04-26T23:22:13.073Z",
   "cloudName": "dhokowg6q",
   "projectFolderRoot": "portfolio",
   "sharedFolderRoot": "shared",
@@ -288,6 +288,127 @@
       ],
       "process": [],
       "videos": [],
+      "other": []
+    },
+    "touchdesigner": {
+      "slug": "touchdesigner",
+      "cloudFolder": "touchdesigner",
+      "folderPrefix": "portfolio/touchdesigner/",
+      "cover": null,
+      "gallery": [],
+      "process": [],
+      "videos": [
+        {
+          "publicId": "01tdreel_h6wpxv",
+          "url": "https://res.cloudinary.com/dhokowg6q/video/upload/v1777245431/01tdreel_h6wpxv.mp4",
+          "assetFolder": "portfolio/touchdesigner/videos",
+          "displayName": "01tdreel_h6wpxv",
+          "format": "mp4",
+          "width": 720,
+          "height": 1280,
+          "bytes": 1587786,
+          "resourceType": "video"
+        },
+        {
+          "publicId": "02tdreel_h62v77",
+          "url": "https://res.cloudinary.com/dhokowg6q/video/upload/v1777244200/02tdreel_h62v77.mp4",
+          "assetFolder": "portfolio/touchdesigner/videos",
+          "displayName": "02tdreel_h62v77",
+          "format": "mp4",
+          "width": 720,
+          "height": 1280,
+          "bytes": 16432523,
+          "resourceType": "video"
+        },
+        {
+          "publicId": "03tdreel_lgxzyi",
+          "url": "https://res.cloudinary.com/dhokowg6q/video/upload/v1777244187/03tdreel_lgxzyi.mp4",
+          "assetFolder": "portfolio/touchdesigner/videos",
+          "displayName": "03tdreel_lgxzyi",
+          "format": "mp4",
+          "width": 720,
+          "height": 1080,
+          "bytes": 6822380,
+          "resourceType": "video"
+        },
+        {
+          "publicId": "04tdreel_yjyzwg",
+          "url": "https://res.cloudinary.com/dhokowg6q/video/upload/v1777244182/04tdreel_yjyzwg.mp4",
+          "assetFolder": "portfolio/touchdesigner/videos",
+          "displayName": "04tdreel_yjyzwg",
+          "format": "mp4",
+          "width": 720,
+          "height": 1280,
+          "bytes": 6956687,
+          "resourceType": "video"
+        },
+        {
+          "publicId": "05tdreel_e7roc0",
+          "url": "https://res.cloudinary.com/dhokowg6q/video/upload/v1777244185/05tdreel_e7roc0.mp4",
+          "assetFolder": "portfolio/touchdesigner/videos",
+          "displayName": "05tdreel_e7roc0",
+          "format": "mp4",
+          "width": 720,
+          "height": 1280,
+          "bytes": 6057184,
+          "resourceType": "video"
+        },
+        {
+          "publicId": "06tdreel_anwkrf",
+          "url": "https://res.cloudinary.com/dhokowg6q/video/upload/v1777244188/06tdreel_anwkrf.mp4",
+          "assetFolder": "portfolio/touchdesigner/videos",
+          "displayName": "06tdreel_anwkrf",
+          "format": "mp4",
+          "width": 720,
+          "height": 1280,
+          "bytes": 7233147,
+          "resourceType": "video"
+        },
+        {
+          "publicId": "07tdreel_y7bqdy",
+          "url": "https://res.cloudinary.com/dhokowg6q/video/upload/v1777245434/07tdreel_y7bqdy.mp4",
+          "assetFolder": "portfolio/touchdesigner/videos",
+          "displayName": "07tdreel_y7bqdy",
+          "format": "mp4",
+          "width": 720,
+          "height": 1280,
+          "bytes": 2334618,
+          "resourceType": "video"
+        },
+        {
+          "publicId": "08tdreel_pgmb7z",
+          "url": "https://res.cloudinary.com/dhokowg6q/video/upload/v1777245443/08tdreel_pgmb7z.mp4",
+          "assetFolder": "portfolio/touchdesigner/videos",
+          "displayName": "08tdreel_pgmb7z",
+          "format": "mp4",
+          "width": 644,
+          "height": 1146,
+          "bytes": 8169387,
+          "resourceType": "video"
+        },
+        {
+          "publicId": "tdreel10_vojtxb",
+          "url": "https://res.cloudinary.com/dhokowg6q/video/upload/v1777245717/tdreel10_vojtxb.mp4",
+          "assetFolder": "portfolio/touchdesigner/videos",
+          "displayName": "tdreel10_vojtxb",
+          "format": "mp4",
+          "width": 720,
+          "height": 1280,
+          "bytes": 11644645,
+          "resourceType": "video"
+        },
+        {
+          "publicId": "tdreel9_s4vrtp",
+          "url": "https://res.cloudinary.com/dhokowg6q/video/upload/v1777245720/tdreel9_s4vrtp.mp4",
+          "assetFolder": "portfolio/touchdesigner/videos",
+          "displayName": "tdreel9_s4vrtp",
+          "format": "mp4",
+          "width": 720,
+          "height": 1280,
+          "bytes": 14544765,
+          "resourceType": "video"
+        }
+      ],
       "other": []
     }
   },

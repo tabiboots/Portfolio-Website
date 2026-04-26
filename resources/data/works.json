@@ -40,5 +40,15 @@
     "imageSrc": "resources/img/chopom.JPG",
     "imageAlt": "Chopom",
     "href": "/portfolio/chopom"
+  },
+  {
+    "slug": "touchdesigner",
+    "title": "TouchDesigner Works",
+    "year": "2024-2026",
+    "materials": "TouchDesigner",
+    "description": "A collection of works created in TouchDesigner, a visual programming language for creating real time visual systems. Explorations of entropy, algorithims, and audio-reactive systems inspire me while keeping my scripting skills sharp!",
+    "imageSrc": "resources/img/touchdesigner.JPG",
+    "imageAlt": "TouchDesigner Works",
+    "href": "/portfolio/touchdesigner"
   }
 ]

@@ -91,6 +91,11 @@ async function renderRoute() {
   return renderNotFound(container);
 }
 
+async function renderRouteAndScrollTop() {
+  await renderRoute();
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+}
+
 function isInternalLeftClickNavigation(evt, a) {
   if (evt.defaultPrevented) return false;
   if (evt.button !== 0) return false;
@@ -110,6 +115,10 @@ function isInternalLeftClickNavigation(evt, a) {
 }
 
 function setupSpaNavigation() {
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
+
   document.addEventListener("click", (evt) => {
     const a = evt.target?.closest?.("a");
     if (!isInternalLeftClickNavigation(evt, a)) return;
@@ -119,11 +128,11 @@ function setupSpaNavigation() {
     if (href === window.location.pathname) return;
 
     history.pushState({}, "", href);
-    renderRoute().catch((err) => console.error(err));
+    renderRouteAndScrollTop().catch((err) => console.error(err));
   });
 
   window.addEventListener("popstate", () => {
-    renderRoute().catch((err) => console.error(err));
+    renderRouteAndScrollTop().catch((err) => console.error(err));
   });
 }
 

@@ -17,6 +17,38 @@ function toRootPath(path) {
   return `/${path}`;
 }
 
+function inferResourceTypeFromUrl(url = "") {
+  const normalized = String(url).toLowerCase();
+  if (/\.(mp4|webm|mov|m4v|ogv)(\?|#|$)/.test(normalized)) return "video";
+  return "image";
+}
+
+function createAutoplayMutedVideo({ className, src, ariaLabel }) {
+  const video = document.createElement("video");
+  if (className) video.className = className;
+  video.src = src;
+  video.autoplay = true;
+  video.muted = true;
+  video.defaultMuted = true;
+  video.loop = true;
+  video.playsInline = true;
+  video.preload = "metadata";
+  video.controls = false;
+  video.setAttribute("aria-label", ariaLabel);
+  video.setAttribute("muted", "");
+  video.setAttribute("autoplay", "");
+  video.setAttribute("playsinline", "");
+
+  const tryPlay = () => {
+    video.play().catch(() => {
+      // Ignore blocked autoplay attempts.
+    });
+  };
+  video.addEventListener("loadedmetadata", tryPlay, { once: true });
+
+  return video;
+}
+
 let mediaManifestPromise = null;
 
 async function loadMediaManifest() {
@@ -38,14 +70,33 @@ async function loadMediaManifest() {
   }
 }
 
-function pickCoverUrl(work, mediaManifest) {
+function pickCardMedia(work, mediaManifest) {
   const slug = work?.slug;
-  if (!slug || !mediaManifest?.projects) return toRootPath(work?.imageSrc);
+  if (!slug || !mediaManifest?.projects) {
+    const fallbackUrl = toRootPath(work?.imageSrc);
+    return fallbackUrl
+      ? { url: fallbackUrl, resourceType: inferResourceTypeFromUrl(fallbackUrl) }
+      : null;
+  }
 
-  const coverUrl = mediaManifest.projects?.[slug]?.cover?.url;
-  if (coverUrl) return coverUrl;
+  const project = mediaManifest.projects?.[slug];
+  const cover = project?.cover;
+  if (cover?.url) {
+    return {
+      url: cover.url,
+      resourceType: cover.resourceType ?? inferResourceTypeFromUrl(cover.url)
+    };
+  }
 
-  return toRootPath(work?.imageSrc);
+  const firstVideo = Array.isArray(project?.videos) ? project.videos.find((item) => item?.url) : null;
+  if (firstVideo?.url) {
+    return { url: firstVideo.url, resourceType: "video" };
+  }
+
+  const fallbackUrl = toRootPath(work?.imageSrc);
+  return fallbackUrl
+    ? { url: fallbackUrl, resourceType: inferResourceTypeFromUrl(fallbackUrl) }
+    : null;
 }
 
 export async function renderDisplayBlocks(container, works) {
@@ -59,14 +110,23 @@ export async function renderDisplayBlocks(container, works) {
     const a = el("a", { className: "display-block", attrs: { href: work.href ?? "#" } });
 
     const imgContainer = el("div", { className: "display-block-image-container" });
-    const img = el("img", {
-      className: "content-container-main-image",
-      attrs: {
-        src: pickCoverUrl(work, mediaManifest),
-        alt: work.imageAlt ?? work.title ?? "Portfolio work"
-      }
-    });
-    imgContainer.appendChild(img);
+    const cardMedia = pickCardMedia(work, mediaManifest);
+    if (cardMedia?.resourceType === "video") {
+      imgContainer.appendChild(
+        createAutoplayMutedVideo({
+          src: cardMedia.url,
+          ariaLabel: work.imageAlt ?? work.title ?? "Portfolio work video"
+        })
+      );
+    } else {
+      const img = el("img", {
+        attrs: {
+          src: cardMedia?.url ?? "",
+          alt: work.imageAlt ?? work.title ?? "Portfolio work"
+        }
+      });
+      imgContainer.appendChild(img);
+    }
 
     const textContainer = el("div", { className: "display-block-text-container" });
     textContainer.appendChild(el("p", { className: "display-block-title", text: work.title ?? "" }));
