@@ -34,6 +34,7 @@ a:active {
   display: flex;
   background-color: rgb(255, 255, 255);
   flex-direction: column;
+  margin-right: 7.5rem;
 }
 
 #header {
@@ -59,11 +60,11 @@ a:active {
 #nav-container {
   position: fixed;
   margin-left: 15rem;
-  margin-right: 10rem;
+  margin-right: 15rem;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  width: calc(100% - 17.5rem);
-  height: 80%;
+  width: calc(100% - 22.5rem);
+  height: 90px;
   overflow: hidden;
 }
 
@@ -79,7 +80,7 @@ a:active {
 
 #nav-button-container-links {
   display: flex;
-  width: 30%;
+  width: 25%;
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
@@ -97,7 +98,6 @@ a:active {
   display: flex;
   margin-top: 0;
   margin-left: 3rem;
-  margin-right: 2.5rem;
   flex-wrap: nowrap;
   padding-top: 7.25rem;
 }
@@ -131,9 +131,8 @@ a:active {
 #content-container-main {
   display: flex;
   flex-direction: column;
-  justify-content: top;
   margin-left: 4.16667rem + 7.91rem;
-  width: 100%;
+  width: 88.7%;
   align-items: center;
   justify-content: start;
   white-space: nowrap;
@@ -182,10 +181,12 @@ a:active {
 }
 
 .display-block-year {
-  font-weight: bold;
+  margin-top: -1rem;
+  font-size: 18px;
 }
 
 .display-block-title {
+  font-size: 30px;
   align-self: start;
   font-weight: bold;
 }
@@ -193,23 +194,73 @@ a:active {
 
 .about-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   margin-top: 5rem;
+  margin-left: 7rem;
 }
 
 .headshot-image {
-  width: 300px;
-  height: 300px;
   object-fit: contain;
   object-position: center;
+  width: 500px;
+  height: 500px;
 }
 
-.about-text {
-  margin-left: 12rem;
-  margin-right: 12rem;
-  font-size: 20px;
+.about-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10rem;
+  margin-right: 5rem;
+}
+.about-title {
+  font-size: 40px;
   text-align: center;
   text-wrap: wrap;
+}
+.about-text {
+  font-size: 20px;
+  text-align: left;
+  text-wrap: wrap;
+}
+
+.work-detail-title {
+  font-size: 35px;
+  font-weight: bold;
+  align-self: start;
+  text-align: left;
+  text-wrap: wrap;
+  margin-top: 4rem;
+  margin-bottom: 3rem;
+}
+
+.work-detail-year {
+  padding-top: 3rem;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+  text-wrap: wrap;
+  align-self: start;
+}
+.work-detail-materials {
+  font-size: 18px;
+  margin-top: -0.7rem;
+  text-align: left;
+  text-wrap: wrap;
+  align-self: start;
+}
+.work-detail-description {
+  font-size: 20px;
+  text-align: left;
+  text-wrap: wrap;
+  align-self: start;
+}
+
+.content-container-main-image {
+  max-height: 450px;
+  max-width: 450px;
+  object-fit: contain;
+  object-position: center;
 }

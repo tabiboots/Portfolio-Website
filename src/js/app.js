@@ -47,9 +47,18 @@ function renderHome(container) {
 
 function renderAbout(container) {
   container.replaceChildren();
-  container.appendChild(el("div", { className: "about-container" }));
-  container.appendChild(el("img", { className: "headshot-image", attrs: { src: "/resources/img/headshot.jpeg" } }));
-  container.appendChild(el("p", { className: "about-text", text: "I'm an artist and technologist based in New York City and Toronto. My practice of making art is a hybrid of traditional and digital media, often incorporating interactive elements and generative systems." }));
+  const aboutContainer = el("div", { className: "about-container" });
+  const aboutTextContainer = el("div", { className: "about-text-container" });
+  const headshot = el('div', { className: 'about-headshot-container' });
+  headshot.appendChild(el("img", { className: "headshot-image", attrs: { src: "/resources/img/headshot.jpeg" } }));
+  aboutContainer.appendChild(headshot);
+  aboutTextContainer.appendChild(el('h2', { className: 'about-title', text: 'about: tabi cass' }));
+  const aboutText = el("p", { className: "about-text" });
+  aboutText.innerHTML =
+    "Tabi Cass is a creative technologist whose work explores the tension between their fascination and unease regarding emerging technologies. Through experimental media, visual metaphor, and conceptual craft, they examine how technological systems shape perception, identity, and interpersonal relationships.<br><br>Tabi graduated from Parsons School of Design in May 2026 with a focus on design and technology and is currently pursuing their MFA at NYU's ITP program.";
+  aboutTextContainer.appendChild(aboutText);
+  aboutContainer.appendChild(aboutTextContainer);
+  container.appendChild(aboutContainer);
 }
 
 function renderContact(container) {
@@ -59,9 +68,7 @@ function renderContact(container) {
 function renderWorkDetail(container, work) {
   container.replaceChildren();
 
-  container.appendChild(el("h2", { className: "title", text: work.title ?? "Work" }));
-  if (work.year) container.appendChild(el("p", { className: "display-block-year", text: String(work.year) }));
-  if (work.materials) container.appendChild(el("p", { className: "display-block-materials", text: `Materials: ${work.materials}` }));
+  container.appendChild(el("h2", { className: "work-detail-title", text: work.title ?? "Work" }));
   if (work.imageSrc) {
     const img = el("img", {
       className: "content-container-main-image",
@@ -69,7 +76,9 @@ function renderWorkDetail(container, work) {
     });
     container.appendChild(img);
   }
-  if (work.description) container.appendChild(el("p", { className: "display-block-description", text: work.description }));
+  if (work.year) container.appendChild(el("p", { className: "work-detail-year", text: String(work.year) }));
+  if (work.materials) container.appendChild(el("p", { className: "work-detail-materials", text: `Materials: ${work.materials}` }));
+  if (work.description) container.appendChild(el("p", { className: "work-detail-description", text: work.description }));
 }
 
 async function renderRoute() {

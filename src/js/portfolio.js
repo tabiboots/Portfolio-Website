@@ -1,11 +1,3 @@
-async function loadJson(url) {
-  const res = await fetch(url, { headers: { Accept: "application/json" } });
-  if (!res.ok) {
-    throw new Error(`Failed to load ${url} (${res.status})`);
-  }
-  return await res.json();
-}
-
 function el(tag, { className, text, attrs } = {}) {
   const node = document.createElement(tag);
   if (className) node.className = className;
@@ -47,13 +39,13 @@ export function renderDisplayBlocks(container, works) {
     const textContainer = el("div", { className: "display-block-text-container" });
     textContainer.appendChild(el("p", { className: "display-block-title", text: work.title ?? "" }));
     textContainer.appendChild(el("p", { className: "display-block-year", text: work.year ?? "" }));
-    textContainer.appendChild(
-      el("p", {
-        className: "display-block-materials",
-        text: work.materials ? `Materials: ${work.materials}` : ""
-      })
-    );
-    textContainer.appendChild(el("p", { className: "display-block-description", text: work.description ?? "" }));
+    // textContainer.appendChild(
+    //   el("p", {
+    //     className: "display-block-materials",
+    //     text: work.materials ? `Materials: ${work.materials}` : ""
+    //   })
+    // );
+    //textContainer.appendChild(el("p", { className: "display-block-description", text: work.description ?? "" }));
 
     a.appendChild(imgContainer);
     a.appendChild(textContainer);
@@ -61,16 +53,4 @@ export function renderDisplayBlocks(container, works) {
     container.appendChild(a);
   }
 }
-
-async function main() {
-  const container = document.getElementById("content-container-main");
-  if (!container) return;
-
-  const works = await loadJson("/resources/data/works.json");
-  renderDisplayBlocks(container, works);
-}
-
-main().catch((err) => {
-  console.error(err);
-});
 
