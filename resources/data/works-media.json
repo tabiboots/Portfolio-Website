@@ -1,0 +1,335 @@
+{
+  "generatedAt": "2026-04-26T21:29:49.823Z",
+  "cloudName": "dhokowg6q",
+  "projectFolderRoot": "portfolio",
+  "sharedFolderRoot": "shared",
+  "projects": {
+    "chopom": {
+      "slug": "chopom",
+      "cloudFolder": "chopom",
+      "folderPrefix": "portfolio/chopom/",
+      "cover": {
+        "publicId": "chopom-cover_dd6vcs",
+        "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777237146/chopom-cover_dd6vcs.jpg",
+        "assetFolder": "portfolio/chopom/images/cover",
+        "displayName": "chopom-cover_dd6vcs",
+        "format": "jpg",
+        "width": 1494,
+        "height": 1396,
+        "bytes": 184077,
+        "resourceType": "image"
+      },
+      "gallery": [
+        {
+          "publicId": "chopom-gallery-1_zbn7zt",
+          "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777237151/chopom-gallery-1_zbn7zt.jpg",
+          "assetFolder": "portfolio/chopom/images/gallery",
+          "displayName": "chopom-gallery-1_zbn7zt",
+          "format": "jpg",
+          "width": 1900,
+          "height": 1178,
+          "bytes": 195184,
+          "resourceType": "image"
+        },
+        {
+          "publicId": "chopom-gallery-2_hij8nq",
+          "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777237152/chopom-gallery-2_hij8nq.jpg",
+          "assetFolder": "portfolio/chopom/images/gallery",
+          "displayName": "chopom-gallery-2_hij8nq",
+          "format": "jpg",
+          "width": 1508,
+          "height": 1446,
+          "bytes": 326207,
+          "resourceType": "image"
+        }
+      ],
+      "process": [],
+      "videos": [
+        {
+          "publicId": "chopom-video1_cvylrs",
+          "url": "https://res.cloudinary.com/dhokowg6q/video/upload/v1777237859/chopom-video1_cvylrs.mp4",
+          "assetFolder": "portfolio/chopom/videos",
+          "displayName": "chopom-video1_cvylrs",
+          "format": "mp4",
+          "width": 946,
+          "height": 720,
+          "bytes": 7733355,
+          "resourceType": "video"
+        }
+      ],
+      "other": []
+    },
+    "iteotwamtvwto": {
+      "slug": "iteotwamtvwto",
+      "cloudFolder": "iteotw",
+      "folderPrefix": "portfolio/iteotw/",
+      "cover": {
+        "publicId": "iteotw-cover_dxfjxc",
+        "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777235252/iteotw-cover_dxfjxc.jpg",
+        "assetFolder": "portfolio/iteotw/images/cover",
+        "displayName": "iteotw-cover_dxfjxc",
+        "format": "jpg",
+        "width": 2458,
+        "height": 1639,
+        "bytes": 711345,
+        "resourceType": "image"
+      },
+      "gallery": [
+        {
+          "publicId": "iteotw-gallery1_nmcgav",
+          "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777235494/iteotw-gallery1_nmcgav.jpg",
+          "assetFolder": "portfolio/iteotw/images/gallery",
+          "displayName": "iteotw-gallery1_nmcgav",
+          "format": "jpg",
+          "width": 1639,
+          "height": 2457,
+          "bytes": 617878,
+          "resourceType": "image"
+        },
+        {
+          "publicId": "iteotw-gallery2_h8ypyk",
+          "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777235496/iteotw-gallery2_h8ypyk.jpg",
+          "assetFolder": "portfolio/iteotw/images/gallery",
+          "displayName": "iteotw-gallery2_h8ypyk",
+          "format": "jpg",
+          "width": 2458,
+          "height": 1639,
+          "bytes": 695839,
+          "resourceType": "image"
+        },
+        {
+          "publicId": "iteotw-gallery3_ap3wa1",
+          "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777235498/iteotw-gallery3_ap3wa1.jpg",
+          "assetFolder": "portfolio/iteotw/images/gallery",
+          "displayName": "iteotw-gallery3_ap3wa1",
+          "format": "jpg",
+          "width": 2458,
+          "height": 1639,
+          "bytes": 609195,
+          "resourceType": "image"
+        }
+      ],
+      "process": [],
+      "videos": [
+        {
+          "publicId": "iteotw-video1_fad9oj",
+          "url": "https://res.cloudinary.com/dhokowg6q/video/upload/v1777236154/iteotw-video1_fad9oj.mp4",
+          "assetFolder": "portfolio/iteotw/videos",
+          "displayName": "iteotw-video1_fad9oj",
+          "format": "mp4",
+          "width": 720,
+          "height": 1280,
+          "bytes": 11899545,
+          "resourceType": "video"
+        },
+        {
+          "publicId": "iteotw-video2_cjfien",
+          "url": "https://res.cloudinary.com/dhokowg6q/video/upload/v1777236456/iteotw-video2_cjfien.mp4",
+          "assetFolder": "portfolio/iteotw/videos",
+          "displayName": "iteotw-video2_cjfien",
+          "format": "mp4",
+          "width": 720,
+          "height": 720,
+          "bytes": 20761242,
+          "resourceType": "video"
+        }
+      ],
+      "other": []
+    },
+    "keeping-reciepts": {
+      "slug": "keeping-reciepts",
+      "cloudFolder": "keeping-receipts",
+      "folderPrefix": "portfolio/keeping-receipts/",
+      "cover": {
+        "publicId": "keeping-receipts-cover_ef7d1t",
+        "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777236350/keeping-receipts-cover_ef7d1t.jpg",
+        "assetFolder": "portfolio/keeping-receipts/images/cover",
+        "displayName": "keeping-receipts-cover_ef7d1t",
+        "format": "jpg",
+        "width": 642,
+        "height": 642,
+        "bytes": 65282,
+        "resourceType": "image"
+      },
+      "gallery": [
+        {
+          "publicId": "keeping-receipts-gallery1_mpwkel",
+          "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777236354/keeping-receipts-gallery1_mpwkel.jpg",
+          "assetFolder": "portfolio/keeping-receipts/images/gallery",
+          "displayName": "keeping-receipts-gallery1_mpwkel",
+          "format": "jpg",
+          "width": 2088,
+          "height": 1392,
+          "bytes": 337865,
+          "resourceType": "image"
+        },
+        {
+          "publicId": "keeping-receipts-gallery2_zuqtzt",
+          "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777236797/keeping-receipts-gallery2_zuqtzt.jpg",
+          "assetFolder": "portfolio/keeping-receipts/images/gallery",
+          "displayName": "keeping-receipts-gallery2_zuqtzt",
+          "format": "jpg",
+          "width": 2088,
+          "height": 1392,
+          "bytes": 313555,
+          "resourceType": "image"
+        }
+      ],
+      "process": [
+        {
+          "publicId": "keeping-receipts-process1_dvo7iw",
+          "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777236677/keeping-receipts-process1_dvo7iw.png",
+          "assetFolder": "portfolio/keeping-receipts/images/process",
+          "displayName": "keeping-receipts-process1_dvo7iw",
+          "format": "png",
+          "width": 2550,
+          "height": 3300,
+          "bytes": 2568801,
+          "resourceType": "image"
+        },
+        {
+          "publicId": "keeping-receipts-process2_do9iho",
+          "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777236982/keeping-receipts-process2_do9iho.png",
+          "assetFolder": "portfolio/keeping-receipts/images/process",
+          "displayName": "keeping-receipts-process2_do9iho",
+          "format": "png",
+          "width": 1275,
+          "height": 1650,
+          "bytes": 955042,
+          "resourceType": "image"
+        },
+        {
+          "publicId": "keeping-receipts-process3_zdqnna",
+          "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777236986/keeping-receipts-process3_zdqnna.png",
+          "assetFolder": "portfolio/keeping-receipts/images/process",
+          "displayName": "keeping-receipts-process3_zdqnna",
+          "format": "png",
+          "width": 1275,
+          "height": 1650,
+          "bytes": 905185,
+          "resourceType": "image"
+        }
+      ],
+      "videos": [
+        {
+          "publicId": "keeping-receipts-video_t17tfg",
+          "url": "https://res.cloudinary.com/dhokowg6q/video/upload/v1777236393/keeping-receipts-video_t17tfg.mp4",
+          "assetFolder": "portfolio/keeping-receipts/videos",
+          "displayName": "keeping-receipts-video_t17tfg",
+          "format": "mp4",
+          "width": 1280,
+          "height": 720,
+          "bytes": 12919532,
+          "resourceType": "video"
+        }
+      ],
+      "other": []
+    },
+    "name-change-game": {
+      "slug": "name-change-game",
+      "cloudFolder": "new-york-name-change-game",
+      "folderPrefix": "portfolio/new-york-name-change-game/",
+      "cover": {
+        "publicId": "new-york-name-change-game-cover_lpqcz3",
+        "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777238134/new-york-name-change-game-cover_lpqcz3.jpg",
+        "assetFolder": "portfolio/new-york-name-change-game/images/cover",
+        "displayName": "new-york-name-change-game-cover_lpqcz3",
+        "format": "jpg",
+        "width": 1459,
+        "height": 1459,
+        "bytes": 282338,
+        "resourceType": "image"
+      },
+      "gallery": [
+        {
+          "publicId": "new-york-name-change-game-gallery1_fmplns",
+          "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777238141/new-york-name-change-game-gallery1_fmplns.jpg",
+          "assetFolder": "portfolio/new-york-name-change-game/images/gallery",
+          "displayName": "new-york-name-change-game-gallery1_fmplns",
+          "format": "jpg",
+          "width": 1250,
+          "height": 1250,
+          "bytes": 171780,
+          "resourceType": "image"
+        },
+        {
+          "publicId": "new-york-name-change-game-gallery2_o9gwvy",
+          "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777238144/new-york-name-change-game-gallery2_o9gwvy.jpg",
+          "assetFolder": "portfolio/new-york-name-change-game/images/gallery",
+          "displayName": "new-york-name-change-game-gallery2_o9gwvy",
+          "format": "jpg",
+          "width": 1137,
+          "height": 1095,
+          "bytes": 152342,
+          "resourceType": "image"
+        },
+        {
+          "publicId": "new-york-name-change-game-gallery3_p3nzr3",
+          "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777238146/new-york-name-change-game-gallery3_p3nzr3.png",
+          "assetFolder": "portfolio/new-york-name-change-game/images/gallery",
+          "displayName": "new-york-name-change-game-gallery3_p3nzr3",
+          "format": "png",
+          "width": 1220,
+          "height": 1522,
+          "bytes": 136443,
+          "resourceType": "image"
+        },
+        {
+          "publicId": "new-york-name-change-game-gallery4_debyvn",
+          "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777238148/new-york-name-change-game-gallery4_debyvn.png",
+          "assetFolder": "portfolio/new-york-name-change-game/images/gallery",
+          "displayName": "new-york-name-change-game-gallery4_debyvn",
+          "format": "png",
+          "width": 657,
+          "height": 649,
+          "bytes": 16358,
+          "resourceType": "image"
+        }
+      ],
+      "process": [],
+      "videos": [],
+      "other": []
+    }
+  },
+  "shared": {
+    "folderPrefix": "shared/",
+    "logos": [],
+    "icons": [],
+    "social": [],
+    "other": [
+      {
+        "publicId": "headshot_dfpuvt",
+        "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777237883/headshot_dfpuvt.jpg",
+        "assetFolder": "shared",
+        "displayName": "headshot_dfpuvt",
+        "format": "jpg",
+        "width": 1170,
+        "height": 1170,
+        "bytes": 224957,
+        "resourceType": "image"
+      },
+      {
+        "publicId": "interrobang_144_j2usxj",
+        "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777237887/interrobang_144_j2usxj.png",
+        "assetFolder": "shared",
+        "displayName": "interrobang_144_j2usxj",
+        "format": "png",
+        "width": 144,
+        "height": 144,
+        "bytes": 8809,
+        "resourceType": "image"
+      },
+      {
+        "publicId": "interrobang_256_u76lcn",
+        "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777237889/interrobang_256_u76lcn.png",
+        "assetFolder": "shared",
+        "displayName": "interrobang_256_u76lcn",
+        "format": "png",
+        "width": 256,
+        "height": 256,
+        "bytes": 30261,
+        "resourceType": "image"
+      }
+    ]
+  }
+}
