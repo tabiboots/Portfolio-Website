@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 3</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container-wrapper">
+        <div class="gameContainer">
+            <div class="twoOptionButtons" name="nameChangeButtons" style="display: none;">
+                <div class="form-title">Do you want to change your name?</div>
+                <div class="button-container">
+                    <button class="responseButton" name="NameChange" data-value="true" onclick="dialogueManager.loadDialogue(dialogueSequences.page3.onNameChangeYes)">Yes</button>
+                    <button class="responseButton" name="NameChange" data-value="false" onclick="dialogueManager.loadDialogue(dialogueSequences.page3.onNameChangeNo); setTimeout(function(){ window.location.href='index.html'; }, 5000);">No</button>
+                </div>
+            </div>
+            <div class="form-wrapper" name="newNameInput" style="display: none;">
+                <div class="form-title">What would you like <br>to be called?</div>
+                <input 
+                    type="text" 
+                    name="NewName" 
+                    class="formField" 
+                    placeholder="Desired Legal Full Name" 
+                    onblur="if(this.value.trim()) dialogueManager.loadDialogue(dialogueSequences.page3.afterNameInput)"
+                    oninput="this.dataset.previousValue = this.value"
+                    data-previous-value=""
+                >
+            </div>
+            <div class="form-wrapper" name="beautifulName" style="display: none;">
+                <button name="beautifulNameButton" class="responseButton" onclick="dialogueManager.loadDialogue(dialogueSequences.page3.beautifulName)">I love it, too</button>
+            </div>
+            <div class="twoOptionButtons" name="previousNameChangePetition" style="display: none;">
+                <div class="form-title">Have you filed a name change petition <br>with the court before?</div>
+                <div class="button-container">
+                    <button class="responseButton" name="PreviousNameChangePetition" data-value="true" onclick="dialogueManager.loadDialogue(dialogueSequences.page3.previousNameChangePetitionYes)">Yes</button>
+                    <button class="responseButton" name="PreviousNameChangePetition" data-value="false" onclick="dialogueManager.loadDialogue(dialogueSequences.page3.previousNameChangePetitionNo)">No</button>
+                </div>
+            </div>
+            <div class="form-wrapper" name="PreviousNameChangePetition-specify" style="display: none;">
+                <div class="form-title">Please include the court where you filed, the date that you filed, the case number (if known), and the result.</div>
+                <textarea name="PreviousNameChangePetition-specify" class="formField" rows="4" style="width: 100%; min-height: 100px; resize: vertical;"></textarea>
+                <button name="PreviousNameChangePetition-specifyButton" class="responseButton" style="display: none;" onclick="window.location.href='page4.html';">Submit</button>
+            </div>
+        </div>
+        <div class="dialogueContainer">
+            <div class="profilePicture">
+               <div class="profileBunny"></div>
+            </div>
+            <div class="dialogueTextBox">
+                <!-- dialogue text will appear here -->
+            </div>
+        </div>
+    </div>
+    <script type="module" src="script.js"></script>
+    <script type="module" src="./modules/animations.js"></script> 
+    <script type="module">
+        import formManager from './modules/formManager.js';
+        import { eventBus } from './modules/eventBus.js';
+        import { createHearts } from './modules/animations.js';
+        
+        window.formManager = formManager;
+
+        eventBus.on('nameChangeButtons', () => {
+            const buttonContainer = document.querySelector('[name="nameChangeButtons"]');
+            buttonContainer.style.display = 'block';
+        });
+
+        eventBus.on('newNameInput', () => {
+            const formWrapper = document.querySelector('[name="newNameInput"]');
+            formWrapper.style.display = 'block';
+        });
+
+        // Fix 1: Using arrow function to preserve 'this'
+        document.querySelector('[name="beautifulNameButton"]').addEventListener('click', (e) => {
+            createHearts(e.currentTarget);  // e.currentTarget refers to the button
+        });
+
+        eventBus.on('beautifulName', () => {
+            const formWrapper = document.querySelector('[name="beautifulName"]');
+            formWrapper.style.display = 'block';
+        });
+    
+        // after beautiful name is shown, hide the input and beautiful name
+        eventBus.on('hideNameInput', () => {
+            setTimeout(() => {
+                const formWrapper = document.querySelector('[name="newNameInput"]');
+                const formWrapper2 = document.querySelector('[name="beautifulName"]');
+                formWrapper.style.display = 'none';
+                formWrapper2.style.display = 'none';
+            }, 500);  // 500ms = 0.5 seconds
+        });
+
+        eventBus.on('previousNameChangePetition', () => {
+            const formWrapper = document.querySelector('[name="previousNameChangePetition"]');
+            formWrapper.style.display = 'block';
+            
+            // Add click listeners to the buttons within this form
+            formWrapper.querySelectorAll('.responseButton').forEach(button => {
+                button.addEventListener('click', () => {
+                    formWrapper.style.display = 'none';
+                });
+            });
+        });
+
+        eventBus.on('previousNameChangeSpecify', () => {
+            const formWrapper = document.querySelector('[name="PreviousNameChangePetition-specify"]');
+            formWrapper.style.display = 'block';
+            
+            // Add blur event listener to the textarea
+            const textarea = formWrapper.querySelector('textarea');
+            textarea.addEventListener('blur', () => {
+                const submitButton = formWrapper.querySelector('[name="PreviousNameChangePetition-specifyButton"]');
+                submitButton.style.display = 'block';
+            });
+        });
+
+        eventBus.on('movetoPage4', () => {
+            setTimeout(() => {
+                window.location.href = 'page4.html';
+            }, 1000);
+        });
+        
+        // Add click listeners to both buttons
+        document.querySelectorAll('.responseButton').forEach(button => {
+            button.addEventListener('click', () => {
+                const buttonContainer = document.querySelector('.twoOptionButtons');
+                buttonContainer.style.display = 'none';
+            });
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 8</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container-wrapper">
+        <div class="gameContainer">
+            <video autoplay muted loop class="video-background">
+                <source src="./assets/fireworks.mp4" type="video/mp4">
+            </video>
+            <button class="final-button" id="fillPdfButton">Fill PDF Form</button>
+        </div>
+        <div class="dialogueContainer">
+            <div class="profilePicture">
+                <div class="profileBunny"></div>
+            </div>
+            <div class="dialogueTextBox">
+                <!-- dialogue text will appear here -->
+            </div>
+        </div>
+    </div>
+    <script type= "module" src="./modules/dialogueData.js"></script>
+    <script type="module" src="script.js"></script>
+    <script type="module">
+        import formManager from './modules/formManager.js';
+        import scanner from './modules/pdfForm.js'; // Ensure you import the scanner
+
+        window.formManager = formManager; // Make it globally accessible
+
+        // Store today's date in localStorage
+        const today = new Date();
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        const yyyy = String(today.getFullYear());
+        const formattedDate = `${mm}/${dd}/${yyyy}`;
+        localStorage.setItem('Date', String(formattedDate));
+
+        // Add event listener for the button
+        document.getElementById('fillPdfButton').addEventListener('click', async () => {
+            try {
+                // Load the PDF if not already loaded
+                await scanner.loadPDF('./assets/name_change_form.pdf');
+
+                // Get the form data from FormManager
+                const formData = {};
+                for (const field of formManager.formFields) {
+                    formData[field.id] = localStorage.getItem(`formData_${field.id}`); // Retrieve each field's value
+                }
+
+                // Now you can use formData to fill the PDF
+                const filledPdfBytes = await scanner.fillForm(formData);
+
+                // Create a Blob and download the filled PDF
+                const blob = new Blob([filledPdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'filled_form.pdf';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                await new Promise(resolve => setTimeout(resolve, 5000));
+                window.location.href = 'index.html';
+            } catch (error) {
+                console.error('Failed to fill PDF:', error);
+            }
+        });
+    </script>
+</body>
+</html>

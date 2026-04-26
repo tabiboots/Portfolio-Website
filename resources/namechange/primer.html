@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New York Name Change Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="titleCardContainer">
+        <div class="primerText">
+            <h1>
+                This game will guide you through the New York State Name Change form. 
+            </h1>
+            <h1>
+                Answer all the questions as accurately as possible to recieve a valid legal document at the end that you can use to change your name.
+            </h1>
+            <h1>
+                Before we get started, try clicking the button below to see what it does. 
+            </h1>
+        </div>
+        <img class = infoButton src="./assets/infoButton.png" onclick="showInfoWindow()" style="position: relative; bottom: 20px;">
+        <div class="buttonWrapper" style="position: relative; top: 20px; visibility: hidden;">
+            <a href="page1.html"><button class="startButton">Next</button></a>
+        </div>
+    </div>
+    <div class ="infoWrapper" style="display: none;">
+        <button class="closeButton">X</button>
+        <h1>This is an info window! Questions <br>that are a bit more complicated <br>will have this button next to them. <br> Clicking it will give you some context <br>to help understand what's being asked.<br> Click the next button to begin the game!</nr></h1>
+    </div>
+    <script type="module" src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            localStorage.clear(); // Clear all local storage when the page loads
+        });
+
+        window.showInfoWindow = function() {
+            document.querySelector('.buttonWrapper').style.visibility = 'visible';
+            const infoWindow = document.querySelector('.infoWrapper');
+            const closeButton = document.querySelector('.closeButton');
+            closeButton.addEventListener('click', () => {
+                infoWindow.style.display = 'none';
+            });
+            // Simply toggle based on the current display state
+            if (infoWindow.style.display === 'none') {
+                infoWindow.style.display = 'block';
+            } else {
+                infoWindow.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

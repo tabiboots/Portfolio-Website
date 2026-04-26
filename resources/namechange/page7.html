@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 7</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container-wrapper">
+        <div class="gameContainer">
+            <div class="form-wrapper" name="SealingRequest" style="display: none;">
+                <img class = infoButton src="./assets/infoButton.png" onclick="showInfoWindow()" style = "left: 20px;">
+                <div class="form-title">Should this court record be sealed for your personal safety?</div>
+                <div class="button-container">
+                    <button class="responseButton" name="SealingRequest" data-value="true" onclick="dialogueManager.loadDialogue(dialogueSequences.page7.SealingRequestYes)">Yes</button>
+                    <button class="responseButton" name="SealingRequest" data-value="false" onclick="dialogueManager.loadDialogue(dialogueSequences.page7.supportingForms)">No</button>
+                </div>
+            </div>
+            <div class="form-wrapper" name="SealingRequest-specify" style="display: none;">
+                <div class="form-title">Please provide the reason for sealing.</div>
+                <textarea name="SealingRequest-specify" class="formField" rows="4" style="width: 100%; min-height: 100px; resize: vertical;"></textarea>
+                <div class="button-container" name="submitSealingRequestContainer" style="visibility: hidden; margin-top: 75px;">
+                    <button class="submitButton" name="submitSealingRequest" onclick="dialogueManager.loadDialogue(dialogueSequences.page7.supportingForms)">Submit</button>
+                </div>
+            </div>
+            <div class="form-wrapper" name="supportingForms" style="display: none;">
+                <div class="form-title">Are there any supporting <br>forms you'd like to submit?</div>
+                <div class="button-container">
+                    <button class="responseButton" name="SupportingDocument" data-value="true" onclick="dialogueManager.loadDialogue(dialogueSequences.page7.supportingFormsYes)">Yes</button>
+                    <button class="responseButton" name="SupportingDocument" data-value="false" onclick="dialogueManager.loadDialogue(dialogueSequences.page7.reasonForNameChange)">No</button>
+                </div>
+            </div>
+            <div class="form-wrapper" name="supportingForms-specify" style="display: none;">
+                <div class="form-title">Please list the forms you'd like to submit.</div>
+                <textarea name="SupportingDocument-specify" class="formField" rows="4" style="width: 100%; min-height: 100px; resize: vertical;"></textarea>
+                <div class="button-container" name="submitSupportingFormsContainer" style="visibility: hidden; margin-top: 75px;">
+                    <button class="submitButton" name="submitSupportingForms" onclick="dialogueManager.loadDialogue(dialogueSequences.page7.reasonForNameChange)">Submit</button>
+                </div>
+            </div>
+            <div class="form-wrapper" name="reasonForNameChange" style="display: none;">
+                <div class="form-title">What are your reasons for changing your name?</div>
+                <textarea name="ReasonsForNameChangeRequest-specify" class="formField" rows="4" style="width: 100%; min-height: 100px; resize: vertical;"></textarea>
+                <div class="button-container" name="submitReasonsForNameChangeContainer" style="visibility: hidden; margin-top: 75px;">
+                    <button class="submitButton" name="submitReasonsForNameChange" onclick="dialogueManager.loadDialogue(dialogueSequences.page7.moveToPage8)">Submit</button>
+                </div>
+            </div>
+        </div>
+        <div class="dialogueContainer">
+            <div class="profilePicture">
+                <div class="profileBunny"></div>
+            </div>
+            <div class="dialogueTextBox">
+                <!-- dialogue text will appear here -->
+            </div>
+        </div>
+    </div>
+    <div class ="infoWrapper" style="display: none;">
+        <button class="closeButton">X</button>
+        <h1>Sealing a record means <br>it will not be visible in <br>any public records.</h1>
+    </div>
+    <script type="module" src="script.js"></script>
+    <script type="module">
+        import formManager from './modules/formManager.js';
+        window.formManager = formManager;
+        import { eventBus } from './modules/eventBus.js';
+        import dialogueManager from './modules/dialogueManager.js';
+        import dialogueSequences from './modules/dialogueData.js';
+        window.dialogueManager = dialogueManager;
+        window.dialogueSequences = dialogueSequences;
+
+        eventBus.on("SealingRequest", () => {
+            const sealingRequest = document.querySelector('.form-wrapper[name="SealingRequest"]');
+            sealingRequest.style.display = "block";
+        });
+
+        // Add click listeners to both sealing request buttons
+        document.querySelectorAll('button[name="SealingRequest"]').forEach(button => {
+            button.addEventListener('click', () => {
+                const infoWrapper = document.querySelector('.infoWrapper');
+                const sealingRequestForm = document.querySelector('.form-wrapper[name="SealingRequest"]');
+                sealingRequestForm.style.display = "none";
+                infoWrapper.style.display = "none";
+                
+            });
+        });
+
+        eventBus.on("SealingRequestSpecify", () => {
+            const sealingRequestSpecify = document.querySelector('.form-wrapper[name="SealingRequest-specify"]');
+            sealingRequestSpecify.style.display = "block";
+            const submitSealingRequestContainer = document.querySelector('.button-container[name="submitSealingRequestContainer"]');
+            const submitSealingText = document.querySelector('textarea[name="SealingRequest-specify"]');
+            submitSealingText.addEventListener('blur', () => {
+                submitSealingRequestContainer.style.visibility = "visible";
+            });
+        });
+
+        document.querySelector('button[name="submitSealingRequest"]').addEventListener('click', () => {
+            const sealingRequestSpecify = document.querySelector('.form-wrapper[name="SealingRequest-specify"]');
+            sealingRequestSpecify.style.display = "none";
+        });
+
+        eventBus.on("supportingForms", () => {
+            const supportingForms = document.querySelector('.form-wrapper[name="supportingForms"]');
+            supportingForms.style.display = "block";
+        });
+
+        document.querySelectorAll('button[name="SupportingDocument"]').forEach(button => {
+            button.addEventListener('click', () => {
+                const supportingForms = document.querySelector('.form-wrapper[name="supportingForms"]');
+                supportingForms.style.display = "none";
+            });
+        });
+
+        eventBus.on("supportingFormsSpecify", () => {
+            const supportingFormsSpecify = document.querySelector('.form-wrapper[name="supportingForms-specify"]');
+            supportingFormsSpecify.style.display = "block";
+            const submitSupportingFormsContainer = document.querySelector('.button-container[name="submitSupportingFormsContainer"]');
+            const submitSupportingText = document.querySelector('textarea[name="SupportingDocument-specify"]');
+            submitSupportingText.addEventListener('blur', () => {
+                submitSupportingFormsContainer.style.visibility = "visible";
+            });
+        });
+
+        document.querySelector('button[name="submitSupportingForms"]').addEventListener('click', () => {
+            const supportingFormsSpecify = document.querySelector('.form-wrapper[name="supportingForms-specify"]');
+            supportingFormsSpecify.style.display = "none";
+        });
+
+        eventBus.on("reasonForNameChange", () => {
+            const reasonForNameChange = document.querySelector('.form-wrapper[name="reasonForNameChange"]');
+            reasonForNameChange.style.display = "block";
+            const submitNameChangeReasonText = document.querySelector('textarea[name="ReasonsForNameChangeRequest-specify"]');
+            const submitNameChangeReasonContainer = document.querySelector('.button-container[name="submitReasonsForNameChangeContainer"]');
+            submitNameChangeReasonText.addEventListener('blur', () => {
+                submitNameChangeReasonContainer.style.visibility = "visible";
+            });
+        });
+
+        document.querySelector('button[name="submitReasonsForNameChange"]').addEventListener('click', () => {
+            const reasonForNameChange = document.querySelector('.form-wrapper[name="reasonForNameChange"]');
+            reasonForNameChange.style.display = "none";
+        });
+
+        eventBus.on("moveToPage8", () => {
+            setTimeout(() => {
+                window.location.href = 'page8.html';
+            }, 1000);
+        });
+
+
+        window.showInfoWindow = function() {
+            const infoWindow = document.querySelector('.infoWrapper');
+            const closeButton = document.querySelector('.closeButton');
+            closeButton.addEventListener('click', () => {
+                infoWindow.style.display = 'none';
+            });
+            // Simply toggle based on the current display state
+            if (infoWindow.style.display === 'none') {
+                infoWindow.style.display = 'block';
+            } else {
+                infoWindow.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

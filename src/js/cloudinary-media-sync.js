@@ -5,10 +5,11 @@ import { v2 as cloudinary } from "cloudinary";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const PROJECT_ROOT = path.resolve(__dirname, "..", "..");
 
-const ENV_PATH = path.join(__dirname, ".env");
-const WORKS_PATH = path.join(__dirname, "resources", "data", "works.json");
-const OUTPUT_PATH = path.join(__dirname, "resources", "data", "works-media.json");
+const ENV_PATH = path.join(PROJECT_ROOT, ".env");
+const WORKS_PATH = path.join(PROJECT_ROOT, "resources", "data", "works.json");
+const OUTPUT_PATH = path.join(PROJECT_ROOT, "resources", "data", "works-media.json");
 const PROJECT_FOLDER_OVERRIDES = {
   iteotwamtvwto: "iteotw",
   "keeping-reciepts": "keeping-receipts",
@@ -83,6 +84,12 @@ function toAssetRecord(asset) {
   };
 }
 
+function sortAssetRecords(a, b) {
+  const aKey = (a.displayName || a.publicId || "").toLowerCase();
+  const bKey = (b.displayName || b.publicId || "").toLowerCase();
+  return aKey.localeCompare(bKey);
+}
+
 async function fetchResourcesForAssetFolderPrefix({ assetFolderPrefix, resourceType }) {
   const all = [];
   let nextCursor;
@@ -120,7 +127,7 @@ async function fetchProjectAssets(slug) {
   }
 
   for (const key of Object.keys(buckets)) {
-    buckets[key].sort((a, b) => a.publicId.localeCompare(b.publicId));
+    buckets[key].sort(sortAssetRecords);
   }
 
   return {
@@ -155,7 +162,7 @@ async function fetchSharedAssets() {
   }
 
   for (const key of Object.keys(buckets)) {
-    buckets[key].sort((a, b) => a.publicId.localeCompare(b.publicId));
+    buckets[key].sort(sortAssetRecords);
   }
 
   return {

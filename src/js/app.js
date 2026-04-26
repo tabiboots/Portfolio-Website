@@ -1,4 +1,5 @@
 import { renderDisplayBlocks } from "./portfolio.js";
+import { renderWorkDetail } from "./render-work-detail.js";
 
 async function loadJson(url) {
   const res = await fetch(url, { headers: { Accept: "application/json" } });
@@ -63,22 +64,6 @@ function renderAbout(container) {
 
 function renderContact(container) {
   renderSimplePage(container, "Contact", "Contact page content goes here.");
-}
-
-function renderWorkDetail(container, work) {
-  container.replaceChildren();
-
-  container.appendChild(el("h2", { className: "work-detail-title", text: work.title ?? "Work" }));
-  if (work.imageSrc) {
-    const img = el("img", {
-      className: "content-container-main-image",
-      attrs: { src: work.imageSrc.startsWith("/") ? work.imageSrc : `/${work.imageSrc}`, alt: work.imageAlt ?? work.title ?? "Work image" }
-    });
-    container.appendChild(img);
-  }
-  if (work.year) container.appendChild(el("p", { className: "work-detail-year", text: String(work.year) }));
-  if (work.materials) container.appendChild(el("p", { className: "work-detail-materials", text: `Materials: ${work.materials}` }));
-  if (work.description) container.appendChild(el("p", { className: "work-detail-description", text: work.description }));
 }
 
 async function renderRoute() {

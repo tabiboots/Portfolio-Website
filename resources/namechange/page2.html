@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 2</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container-wrapper">
+            <div class="gameContainer">
+                <div class=form-titlepage2>What is your home address?</div>
+                <div class="form-subtitlepage2" name="brokenFormTitle2">Street, city, state, zip, and country.</div>
+                <input id="dynamicInput" class="formfieldpage2" onclick="dialogueManager.loadDialogue(dialogueSequences.page2.onClickBox1)" type="text" placeholder></input>
+                <button class="submitButton" style="display: none; margin-top: 300px;" onclick="window.location.href='page3.html';">Next</button>
+                <div class="button-container" name="page2ResponseButtons" style="display: none;">
+                    <button class="responseButton" id="speechOptionButton" onclick="dialogueManager.loadDialogue(dialogueSequences.page2.onClickDialogue1)">
+                        <p>I'm sorry.</p>
+                </button>
+                <button class="responseButton" id="speechOptionButton" onclick="dialogueManager.loadDialogue(dialogueSequences.page2.onClickDialogue2)">
+                    <p>I didn't mean to.</p>
+                </button>
+            </div>
+        </div>
+        <div class="dialogueContainer">
+            <div class="profilePicture">
+                <!-- profile picture content -->
+            </div>
+            <div class="dialogueTextBox">
+                <!-- dialogue text will appear here -->
+        </div>  
+    </div>
+    <script type="module" src="script.js"></script>
+    <script type="module">
+        import formManager from './modules/formManager.js';
+        window.formManager = formManager; // Make it globally accessible
+    </script>
+    <script type="module">
+        document.getElementById('dynamicInput').addEventListener('click', function() {
+            // Delay the execution by 500 milliseconds
+            setTimeout(() => {
+                const img = document.createElement('img');
+                img.className = 'broken-box';
+                img.src = './assets/brokenField.png'; // Replace with the path to your PNG image
+
+                // Replace the input field with the image
+                const container = document.querySelector('.gameContainer');
+                container.replaceChild(img, this);
+            }, 10); // 500 milliseconds delay
+                // Create a new box that will fade in
+                const fadeInBox = document.createElement('div');
+                 fadeInBox.className = 'fade-in-box'; // Add a class for styling
+
+                const container = document.querySelector('.gameContainer');
+                container.appendChild(fadeInBox); // Append to the gameContainer
+
+                // Set a timeout to fade in the box after 2 seconds
+            setTimeout(() => {
+                fadeInBox.style.opacity = 1; // Change opacity to 1 to fade in
+             }, 2000); // 2000 milliseconds delay
+             setTimeout(() => {
+                fadeInBox.classList.add('fade-in-color');
+             }, 3000); 
+             setTimeout(() => {
+                const bunnyLeft = document.createElement('div');
+                bunnyLeft.className = 'bunny-left'; // Add class for styling
+                container.appendChild(bunnyLeft); // Append to the gameContainer
+             }, 4000); 
+            setTimeout(() => {
+                dialogueManager.loadDialogue(dialogueSequences.page2.onDoorLoad)
+            }, 5000);
+});
+    const buttons = document.querySelectorAll('.responseButton');
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            console.log('Button clicked:', button.innerText);
+            document.querySelector('[name="page2ResponseButtons"]').style.display = 'none';
+        });
+    });
+    </script>
+    <script type="module">
+        import { eventBus } from './modules/eventBus.js';
+    
+        eventBus.on('page2Response', () => {
+            document.querySelector('.button-container').style.display = 'block';
+        });
+
+        eventBus.on('page2Done', () => {
+            document.querySelector('.submitButton').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

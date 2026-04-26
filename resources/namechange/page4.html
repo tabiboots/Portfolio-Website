@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 4</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
+</head>
+<body>
+    <div class="container-wrapper">
+        <div class="gameContainer">
+            <div class="lilDudeDiving"></div>
+            <div class="button-container" style="display: none;">
+                <button class="responseButton" id="speechOptionButton" onclick="window.userChoice='denial'; dialogueManager.loadDialogue(dialogueSequences.page4.onClickDenial)">I have no idea what you're talking about.</button>
+                <button class="responseButton" id="speechOptionButton" onclick="window.userChoice='apologetic'; dialogueManager.loadDialogue(dialogueSequences.page4.onClickIDidIt)">I'm sorry, I'll try to fix it.</button>
+            </div>
+
+            <div class="button-container" name="ConvictedOfCrimeContainer" style="display: none">
+                <div class="form-title" name="lilDudeFormTitle">Have you ever been convicted of a crime?</div>
+                <div class="button-container" name="ConvictedButtonContainer">
+                <button class="responseButton" name="ConvictedOfCrime" data-value="true" onclick="dialogueManager.loadDialogue(dialogueSequences.page4.onClickConvictedOfCrimeYes)">Yes</button>
+                <button class="responseButton" name="ConvictedOfCrime" data-value="false" onclick="dialogueManager.loadDialogue(dialogueSequences.page4.moveToJudgementsorLiens)">No</button>
+                </div>
+            </div>
+            <div class="form-wrapper" name="page4ConvictedOfCrimeDetails" style="display: none;">
+                <div class="form-title" name="lilDudeFormTitle">What court were you convicted in?</div>
+                <input class="formField" name="CourtOfConviction" type="text">
+                <div class="form-title" name="lilDudeFormTitle">What crime were you convicted of?</div>
+                <input class="formField" name="Crime" type="text">
+                <div class="button-container">
+                    <button class="submitButton" name="SubmitConvictedOfCrime" style="visibility: hidden;" onclick="dialogueManager.loadDialogue(dialogueSequences.page4.moveToJudgementsorLiens)">Submit</button>
+                </div>
+            </div>
+            <div class="form-wrapper" name="BankruptcyorJudgements" style="display: none;">
+                <div class="form-title" name="lilDudeFormTitle">Have you ever declared bankruptcy?</div>
+                <div class="button-container">
+                    <button class="responseButton" name="Bankruptcy" data-value="true">Yes</button>
+                    <button class="responseButton" name="Bankruptcy" data-value="false">No</button>
+                </div>
+                <div class="form-title" name="lilDudeFormTitle">Are there any judgments or liens against you?</div>
+                <img src="assets/infoButton.png" class="infoButton" onclick="showInfoWindow()">
+                <div class="button-container">
+                    <button class="responseButton" name="JudgmentsOrLiens" data-value="true">Yes</button>
+                    <button class="responseButton" name="JudgmentsOrLiens" data-value="false">No</button>
+                </div>
+                <div class="button-container">
+                    <button class="submitButton" name="SubmitBankruptcyorJudgements" style="visibility: hidden;" onclick="dialogueManager.loadDialogue(dialogueSequences.page4.moveToPartyToAction)">Submit</button>
+                </div>
+            </div>
+            <div class="form-wrapper" name="PartyToAction" style="display: none;">
+                <div class="form-title" name="lilDudeFormTitle">Are you a party in a lawsuit or other court case?</div>
+                <div class="button-container">
+                    <button class="responseButton" name="PartyToAction" data-value="true" onclick="dialogueManager.loadDialogue(dialogueSequences.page4.yesPartyToAction)">Yes</button>
+                    <button class="responseButton" name="PartyToAction" data-value="false" onclick="dialogueManager.loadDialogue(dialogueSequences.page4.fixFormButton)">No</button>
+                </div>
+            </div>
+            <div class="form-wrapper" name="BankruptcyJudgmentsLiensParty-specify" style="display: none;">
+                <div class="form-title" name="lilDudeFormTitle">Provide details about the lawsuit or court case, including the court where it was filed, the date it was filed, and case number (if known)</div>
+                <textarea class="formField" name="BankruptcyJudgmentsLiensParty-specify" rows="4" style="resize: vertical; min-height: 100px; width: 100%;"></textarea>
+                <div class="button-container">
+                    <button class="submitButton" name="SubmitPartyDetails" style="visibility: hidden;" onclick="dialogueManager.loadDialogue(dialogueSequences.page4.fixFormButton)">Submit</button>
+                </div>
+            </div>
+            <div class="form-wrapper" name="endPage4Form" style="display: none;">
+                <div class="button-container" name="endPage4ButtonContainer">
+                <button class="submitButton" name="fixFormButton" onclick="dialogueManager.loadDialogue(dialogueSequences.page4.endPage4)">Help fix the broken form.</button>
+                </div>
+            </div>
+        </div>
+        <div class="dialogueContainer">
+            <div class="profilePicture">
+                <div class="profileBunny"></div>
+            </div>
+            <div class="dialogueTextBox">
+                <!-- dialogue text will appear here -->
+            </div>
+        </div>
+    </div>
+    <div class ="infoWrapper" style="display: none;">
+        <button class="closeButton">X</button>
+        <h1>Judgement: <br> A court order that requires a person <br>to pay a debt or perform a certain action. <br>Liens: <br> A legal claim against a person's property <br>for unpaid debts or obligations.</h1>
+    </div>
+    <script type="module" src="script.js"></script>
+    <script type="module">
+        import formManager from './modules/formManager.js';
+        import { eventBus } from './modules/eventBus.js';
+        import { initializeDivingAnimation } from './modules/animations.js';
+        import dialogueManager from './modules/dialogueManager.js';
+        
+        window.dialogueManager = dialogueManager;
+        window.formManager = formManager;
+        
+        initializeDivingAnimation();
+        eventBus.on('page4Response', () => {
+            setTimeout(() => {
+                document.querySelector('.button-container').style.display = 'block';
+            }, 500);
+        });
+
+        eventBus.on('page4Questions', () => {
+            document.querySelector('[name="ConvictedOfCrimeContainer"]').style.display = 'block';
+
+            document.querySelectorAll('[name="ConvictedOfCrime"]').forEach(button => {
+                button.addEventListener('click', () => {
+                    document.querySelector('[name="ConvictedOfCrimeContainer"]').style.display = 'none';
+                });
+            });
+        });
+        document.querySelectorAll('.responseButton').forEach(button => {
+            button.addEventListener('click', (e) => {
+                if (button.getAttribute('name') === 'Bankruptcy' || 
+                    button.getAttribute('name') === 'JudgmentsOrLiens') {
+                    return;
+                }
+                e.target.closest('.button-container').style.display = 'none';
+            });
+        });
+
+        eventBus.on('page4ConvictedOfCrimeDetails', () => {
+            document.querySelector('[name="page4ConvictedOfCrimeDetails"]').style.display = 'block';
+            
+            document.querySelector('[name="Crime"]').addEventListener('blur', () => {
+                document.querySelector('[name="SubmitConvictedOfCrime"]').style.visibility = 'visible';
+            });
+
+            document.querySelector('[name="SubmitConvictedOfCrime"]').addEventListener('click', () => {
+                document.querySelector('[name="page4ConvictedOfCrimeDetails"]').style.display = 'none';
+            });
+        });
+
+        eventBus.on('page4JudgementsorLiens', () => {
+            document.querySelector('[name="BankruptcyorJudgements"]').style.display = 'block';
+            window.showInfoWindow = function() {
+            const infoWindow = document.querySelector('.infoWrapper');
+            const closeButton = document.querySelector('.closeButton');
+            closeButton.addEventListener('click', () => {
+                infoWindow.style.display = 'none';
+            });
+            // Simply toggle based on the current display state
+            if (infoWindow.style.display === 'none') {
+                infoWindow.style.display = 'block';
+                } else {
+                    infoWindow.style.display = 'none';
+                }
+            }
+            
+            // Function to check if both buttons are selected
+            const checkBothSelected = () => {
+                const bankruptcySelected = document.querySelector('[name="Bankruptcy"].selected');
+                const liensSelected = document.querySelector('[name="JudgmentsOrLiens"].selected');
+                const submitButton = document.querySelector('[name="SubmitBankruptcyorJudgements"]');
+                
+                if (bankruptcySelected && liensSelected) {
+                    submitButton.style.visibility = 'visible';
+                } else {
+                    submitButton.style.visibility = 'hidden';
+                }
+            };
+
+            // Handle Bankruptcy buttons
+            const bankruptcyButtons = document.querySelectorAll('[name="Bankruptcy"]');
+            bankruptcyButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    bankruptcyButtons.forEach(btn => btn.classList.remove('selected'));
+                    button.classList.add('selected');
+                    checkBothSelected();
+                });
+            });
+
+            // Handle Judgments/Liens buttons
+            const liensButtons = document.querySelectorAll('[name="JudgmentsOrLiens"]');
+            liensButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    liensButtons.forEach(btn => btn.classList.remove('selected'));
+                    button.classList.add('selected');
+                    checkBothSelected();
+                });
+            });
+            
+            // Add submit button listener
+            document.querySelector('[name="SubmitBankruptcyorJudgements"]').addEventListener('click', () => {
+                document.querySelector('[name="BankruptcyorJudgements"]').style.display = 'none';
+            });
+        });
+
+        eventBus.on('page4PartyToAction', () => {
+            document.querySelector('[name="PartyToAction"]').style.display = 'block';
+            
+            // Add click listeners to only the buttons with name="PartyToAction"
+            document.querySelectorAll('button[name="PartyToAction"]').forEach(button => {
+                button.addEventListener('click', () => {
+                    document.querySelector('[name="PartyToAction"]').style.display = 'none';
+                });
+            });
+        });
+
+        eventBus.on('page4BankruptcyJudgmentsLiensPartySpecify', () => {
+            const formWrapper = document.querySelector('[name="BankruptcyJudgmentsLiensParty-specify"]');
+            formWrapper.style.display = 'block';
+            
+            // Show submit button when textarea loses focus
+            document.querySelector('textarea[name="BankruptcyJudgmentsLiensParty-specify"]').addEventListener('blur', () => {
+                document.querySelector('[name="SubmitPartyDetails"]').style.visibility = 'visible';
+            });
+
+            // Hide form when submitted
+            document.querySelector('[name="SubmitPartyDetails"]').addEventListener('click', () => {
+                formWrapper.style.display = 'none';
+            });
+        });
+
+        eventBus.on('fixFormButton', () => {
+            const buttonContainer = document.querySelector('[name="endPage4Form"]');
+            buttonContainer.style.display = 'block';
+            
+            // Add click listener to the end page button
+            document.querySelector('button[name="fixFormButton"]').addEventListener('click', () => {
+                buttonContainer.style.display = 'none';
+            });
+        });
+
+        eventBus.on('moveToPage5', () => {
+            setTimeout(() => {
+                window.location.href = 'page5.html';
+            }, 1000);
+        });
+
+    </script>
+</body>
+</html>

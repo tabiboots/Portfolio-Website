@@ -1,0 +1,929 @@
+@font-face {
+    font-family: 'Silver';
+    src: url('assets/Silver.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LilDude';
+    src: url('assets/dpcomic.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Silver', sans-serif;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    margin: 0;
+}
+
+.container-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: calc(2vh);  /* Dynamic gap based on viewport height */
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    transform-origin: center center;
+}
+
+
+.gameContainer {
+    position: relative;
+    width: 600px;
+    height: 650px;
+    border: 3px solid white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.dialogueContainer {
+    width: 600px;
+    height: 150px;
+    border: 3px solid white;
+    display: flex;
+    align-items: float;
+}
+
+.profilePicture {
+    width: 125px;
+    height: 125px;
+    border: 3px solid white;
+    margin: 10px;
+}
+
+.dialogueTextBox {
+    box-sizing: border-box; 
+    width: 425px;
+    height: 131px;
+    color: white;
+    border: 3px solid white;
+    margin: 10px;
+    padding: 10px;
+    font-size: 40px;
+    word-spacing: 10px;
+}
+
+.dialogueTextBox span {
+    transition: opacity 0.1s ease-in-out;
+}
+
+/* title card css */
+.titleCardContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    height: 600px;
+    border: 3px solid white;
+    padding: 10px;
+    margin: 10px;
+}
+
+.titleCard {
+    margin-top: -50px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.startButton {
+    margin-top: 10px;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    border: none;
+    font-family: 'Silver', sans-serif;
+    font-size: 40px;
+    border: 3px solid rgb(255, 255, 255);
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.startButton:hover {
+    transform: scale(1.1); 
+    box-shadow: 0 0 10px #fff,
+                0 0 20px #fff,
+                0 0 30px #7a7a7a,
+                0 0 40px #1f1f1f;
+    cursor: pointer;
+    background-color: hsl(0, 0%, 100%);
+    color: black;
+    border: 3px solid black;
+}
+
+/* page 1 */
+
+.submitButton {
+    font-family: 'Silver';
+    position: relative;
+    font-size: 35px;
+    color: white;
+    background-color: black;
+    border: 3px solid white;
+    transition: all 0.3s ease;
+}
+
+.submitButton:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: white;
+    color: black;
+}
+
+.formField {
+    margin: 15px;
+    font-size: 40px;
+    width: 100%; /* Make the input field take the full width */
+    word-spacing: 10px;
+    background: black;
+    color: white;
+    border: 3px solid white;
+    padding: 8px; /* Add some padding for better appearance */
+    box-sizing: border-box; /* Ensure padding is included in the width */
+    font-family: 'Silver', sans-serif;
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-wrapper .formField {
+    width: 80%;
+    margin: 15px auto;
+    display: block;
+}
+
+.form-title {
+    font-size: 40px;
+    word-spacing: 10px;
+    color: white;
+    text-align: center;
+    margin-bottom: 10px; /* Add some space between the title and the input */
+}
+.form-subtitle {
+    font-size: 30px;
+    word-spacing: 10px;
+    color: rgb(145, 145, 145);
+    text-align: center;
+    margin-bottom: 10px; /* Add some space between the title and the input */
+}
+
+.next-button {
+    font-family: 'Silver';
+    font-size: 30px; /* Adjusted font size to match the aesthetic */
+    position: absolute;
+    top: 720px;
+    left: 620px;
+    border: 3px solid rgb(0, 128, 255); /* Match border color with startButton */
+    background-color: rgb(0, 0, 0); /* Match background color */
+    color: rgb(0, 128, 255); /* Match text color */
+    padding: 10px 20px; /* Added padding for better appearance */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.next-button:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    background-color: black; /* Change background on hover */
+    color: white; /* Change text color on hover */
+    border: 3px solid white; /* Change border color on hover */
+}
+
+.shake {
+    display: inline-block;
+    animation: shake 0.3s ease-in-out infinite;
+}
+
+@keyframes shake {
+    0% { transform: translate(0px, 0px) rotate(0deg); }
+    25% { transform: translate(-1px, -1px); }
+    50% { transform: translate(0.5px, 1px); }
+    75% { transform: translate(-0.5px, -0.5px); }
+    100% { transform: translate(0px, 0px); }
+}
+
+/* page 2*/
+
+.formfieldpage2 {
+    position: relative;
+    margin: 15px;
+    font-size: 40px;
+    width: 79%; /* Make the input field take the full width */
+    word-spacing: 10px;
+    background: black;
+    color: white;
+    border: 3px solid white;
+    padding: 8px; /* Add some padding for better appearance */
+    box-sizing: border-box; /* Ensure padding is included in the width */
+    font-family: 'Silver', sans-serif;
+}
+
+.fade-in-box {
+    position: absolute;
+    bottom: 0px;
+    left: 83%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 130px;  
+    background-color: black;
+    opacity: 0;
+    transition: opacity 2s ease, background-color 2s ease;
+    border: 3px solid white;
+}
+
+.fade-in-color {
+    background-color: rgba(255, 255, 255, 0.9); /* Change to desired fill color */
+}
+
+.broken-box {
+    position: absolute;
+    top: 44%;
+}
+
+.form-titlepage2 {
+    font-size: 40px;
+    position: absolute;
+    top: 30%;
+    word-spacing: 10px;
+    color: white;
+    text-align: center;
+    margin-bottom: 10px; /* Add some space between the title and the input */
+}
+
+.form-subtitlepage2 {
+    font-size: 30px;
+    position: absolute;
+    top: 35%;
+    word-spacing: 10px;
+    color: rgb(129, 129, 129);
+    text-align: center;
+    margin-bottom: 10px; /* Add some space between the title and the input */
+}
+
+.bunny-left{
+    position: absolute;
+    bottom: 14px;
+    right: 82px;
+    width: 32px;
+    transform: scale(2);
+    height:32px;
+    background: url('assets/bunnysheetleft.png') left center;
+    z-index: 2;
+    animation: bunnyFadeIn 1.5s steps(6) forwards, hopleftAnimationPage2 .8s steps(8) 3 2s, bunnyMovementPage2 2.4s steps(1)forwards 2s;
+    image-rendering: pixelated;             
+    image-rendering: crisp-edges;           
+    -ms-interpolation-mode: nearest-neighbor; 
+}
+
+@keyframes hopleftAnimationPage2 {
+    100% { background-position: -256px; }
+ }
+
+ @keyframes bunnyMovementPage2 {
+    0%{
+        transform: translateX(0) translateY(0) scale(2)
+    }
+    4.1%{
+        transform: translateX(-5px) translateY(-10px) scale(2)
+    }
+    8.2%{
+        transform: translateX(-10px) translateY(-15px) scale(2)
+    }
+    12.5%{
+        transform: translateX(-20px) translateY(-20px) scale(2)
+    }
+    16.6%{
+        transform: translateX(-25px) translateY(-25px) scale(2)
+    }
+    20.8%{
+        transform: translateX(-30px) translateY(-20px) scale(2)
+    }
+    25%{
+        transform: translateX(-40px) translateY(-15px) scale(2)
+    }
+    29.1%{
+        transform: translateX(-50px) translateY(-10px) scale(2)
+    }
+    33%{
+        transform: translateX(-55px) translateY(0) scale(2)
+    }
+    37.1%{
+        transform: translateX(-60px) translateY(-10px) scale(2)
+    }
+    41.2%{
+        transform: translateX(-70px) translateY(-15px) scale(2)
+    }
+    45%{
+        transform: translateX(-90px) translateY(-20px) scale(2)
+    }
+    49.6%{
+        transform: translateX(-95px) translateY(-25px) scale(2)
+    }
+    53.8%{
+        transform: translateX(-100px) translateY(-20px) scale(2)
+    }
+    57%{
+        transform: translateX(-110px) translateY(-15px) scale(2)
+    }
+    62.1%{
+        transform: translateX(-120px) translateY(-10px) scale(2)
+    }
+    66%{
+        transform: translateX(-125px) translateY(0) scale(2)
+    }
+    70.1%{
+        transform: translateX(-130px) translateY(-10px) scale(2)
+    }
+    74.3%{
+        transform: translateX(-140px) translateY(-15px) scale(2)
+    }
+    78.5%{
+        transform: translateX(-150px) translateY(-20px) scale(2)
+    }
+    82.6%{
+        transform: translateX(-155px) translateY(-25px) scale(2)
+    }
+    86.1%{
+        transform: translateX(-160px) translateY(-20px) scale(2)
+    }
+    91%{
+        transform: translateX(-170px) translateY(-15px) scale(2)
+    }
+    95%{
+        transform: translateX(-180px) translateY(-10px) scale(2)
+    }
+    100%{
+        transform: translateX(-195px) translateY(0) scale(2)
+    }
+ }
+
+ @keyframes bunnyFadeIn {
+    0%{
+        transform: scale(0);
+        opacity: 0;
+    }
+    100%{
+        transform: scale(2);
+        opacity: 1;
+    }
+ }
+
+
+.speechOptionsBox {
+    position: absolute;
+    width: 500px;
+    height: 200px;
+    padding-top: 10px;
+    top: 40%;
+    left: 68%;
+    display: flex;
+    flex-direction: column; /* Ensure buttons stack vertically */
+    align-items: center; /* Center buttons horizontally */
+    gap: 30px; /* Space between buttons */
+}
+
+.responseButton[id='speechOptionButton'] {
+    height: auto;
+    border: 3px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    background-color: black;
+    animation: subtlePulse 3s ease-in-out infinite;
+}
+
+@keyframes subtlePulse {
+    0% { 
+        transform: scale(1);
+    }
+    50% { 
+        transform: scale(1.05);  /* Only grows 5% larger */
+    }
+    100% { 
+        transform: scale(1);
+    }
+}
+
+/* page 3 */
+
+.profileBunny {
+    position: relative;
+    bottom: -50px;
+    left: 45px;
+    width: 32px;
+    height: 32px;
+    background: url('assets/bunnysheetprofile.png') left center;
+    transform: scale(4);
+    image-rendering: pixelated;             
+    image-rendering: crisp-edges;           
+    -ms-interpolation-mode: nearest-neighbor; 
+}
+
+.profileBunny.idle {
+    background: url('assets/bunnysheetprofile.png') left center;
+    background-position: 0px;
+}
+
+.profileBunny.animate {
+    animation: profileBunnyAnimation 0.8s steps(4) alternate infinite;
+}
+
+@keyframes profileBunnyAnimation {
+    100% { background-position: -128px; }
+}
+
+.twoOptionButtons {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 600px;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    transform: translateY(-50%);
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px; /* Space between Yes and No buttons */
+    justify-content: center;
+}
+
+.button-container[name="page2ResponseButtons"] {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%); /* Centers the container perfectly */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    white-space: nowrap; /* Prevents button text from wrapping */
+}
+
+.button-container[name="page2ResponseButtons"] .responseButton {
+    margin: 0 40px;
+    display: inline-block;
+}
+
+.form-title {
+    font-size: 40px;
+    word-spacing: 10px;
+    color: white;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.responseButton {
+    position: relative;
+    align-self: center;
+    font-family: 'Silver';
+    font-size: 30px;
+    border: 3px solid white;
+    color: white;
+    background-color: black;
+    transition: all 0.3s ease;
+    padding: 10px 20px;
+    width: fit-content;
+    margin: 10px auto;
+    display: block;
+}
+
+.responseButton:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: white;
+    color: black;
+}
+
+.responseButton[name="beautifulNameButton"] {
+    z-index: 2;
+}
+
+.responseButton[name="PreviousNameChangePetition-specifyButton"] {
+    position: absolute;
+    bottom: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.form-wrapper[name="beautifulName"] {
+    position: absolute;
+    width: 100%;
+    bottom: 80px; /* Adjust this value to control distance from bottom */
+}
+
+/* Heart animation */
+.heart {
+    position: absolute;
+    width: 32px;  /* Adjust based on your PNG size */
+    height: 32px; /* Adjust based on your PNG size */
+    background-image: url('assets/heartPage3.png'); /* Update with your PNG path */
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    animation: floatHeart 1.5s ease-out forwards;
+    opacity: 0;
+    z-index: -1; /* Place hearts behind the button */
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--x), -100px) rotate(var(--rotate)) scale(1.5);
+        opacity: 0;
+    }
+}
+/* page4 */
+.lilDudeDiving {
+    position: absolute;
+    bottom: 55px;
+    background: url('assets/lildudediving.png') left center;
+    left: 40px;
+    width: 18px;
+    height: 18px;
+    transform: scale(6);
+    image-rendering: pixelated;             
+    image-rendering: crisp-edges;           
+    -ms-interpolation-mode: nearest-neighbor; 
+}
+
+.lilDudeWalking {
+    position: absolute;
+    bottom: 75px;
+    background: url('assets/lilDudeWalking.png') left center;
+    left: 40px;
+    width: 18px;
+    height: 18px;
+    transform: scale(6);
+    image-rendering: pixelated;             
+    image-rendering: crisp-edges;           
+    -ms-interpolation-mode: nearest-neighbor; 
+}
+
+span.lilDudeText {
+    color: rgb(189, 87, 189);
+    font-weight: normal;
+    font-size: 35px;
+    font-family: 'LilDude', sans-serif;
+}
+
+
+.form-title[name="lilDudeFormTitle"] {
+    padding: 30px;
+    font-size: 30px;
+    text-align: center;
+    font-family: 'LilDude';
+    color: rgb(189, 87, 189);
+}
+
+/* You can remove the positioning from the button-container since the form-wrapper handles it */
+.button-container[name="endPage4ButtonContainer"] {
+    width: 100%;
+    text-align: center;
+}
+
+/*page5*/
+
+.brokenFormFieldFix {
+    background: url('assets/page5FormFix.png') center top;
+    width: 488px;
+    height: 129px;  /* Each frame is 129px tall */
+    display: block;
+    background-repeat: no-repeat;
+    background-size: 488px 516px;  /* Total height is 516px */
+}
+
+/* States - each offset by 129px */
+.brokenFormFieldFix.state-1 { background-position: center 0; }
+.brokenFormFieldFix.state-2 { background-position: center -129px; }
+.brokenFormFieldFix.state-3 { background-position: center -258px; }
+.brokenFormFieldFix.state-4 { background-position: center -387px; }
+
+.form-title[name="brokenFormTitle"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+/* Make sure the parent has relative positioning */
+.form-wrapper[name="brokenForm"] {
+    position: relative;
+    padding-top: 30px; /* Add space for the title */
+}
+
+.hammer {
+    width: 70px;  /* Adjust initial size as needed */
+    height: 70px;
+    cursor: pointer;
+    position: absolute;
+    bottom: -150px;
+    left: 210px;
+    z-index: 100;
+    transform-origin: bottom right;
+}
+
+.hammer.following-cursor {
+    position: fixed;
+    pointer-events: none;
+    width: 70px;  /* Smaller size when following cursor */
+    height: 70px;
+}
+
+.hammer.swinging {
+    animation: hammerSwing 0.2s steps(2);
+}
+
+
+.hammer-active {
+    cursor: none !important;
+}
+
+
+@keyframes hammerSwing {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(-45deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes bonk {
+    0% { transform: scaleX(4) scaleY(4); }
+    50% { transform: scaleX(4.5) scaleY(3.2); }  /* Squish horizontally and stretch slightly vertically */
+    100% { transform: scaleX(4) scaleY(4); }
+}
+
+.profileBunny.bonked {
+    animation: bonk 0.2s steps(2);  /* Made it faster for a snappier effect */
+}
+
+.submitButton[name="submitCurrentAddress"] {
+    position: absolute;
+    left: 50%;
+    margin-bottom: 100px;
+    transform: translateX(-50%);
+}
+
+.submitButton[name="submitDOBandPlaceofBirth"] {
+    position: absolute;
+    left: 50%;
+    margin-bottom: 100px;
+    transform: translateX(-50%);
+}
+/* page 6 */
+.roses {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 3s ease;
+    display: none;
+    z-index: -5;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    max-height: 100%;
+}
+
+@font-face {
+    font-family: 'Peaberry';
+    src: url('assets/PeaberryBase.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+span.lover {
+    font-family: 'Peaberry', sans-serif;
+    color: rgb(255, 138, 196);  /* Light pink color - adjust as needed */
+    font-weight: normal;
+    font-size: 24px;
+}
+
+.form-title[name="loverFormTitle"] {
+    padding: 30px;
+    font-size: 24px;
+    text-align: center;
+    font-family: 'Peaberry', sans-serif;
+    color: rgb(255, 138, 196);
+}
+
+
+.catSitting {
+    position: absolute;
+    bottom: 25px;
+    right: 250px;
+    width: 32px;
+    height: 24px;
+    background: url('assets/catsitting.png') left center;
+    transform: scale(4) rotate(10deg);
+    opacity: 0;
+    transition: opacity 1s ease;
+    background-position: 0 0;
+    image-rendering: pixelated;             
+    image-rendering: crisp-edges;           
+    -ms-interpolation-mode: nearest-neighbor; 
+}
+
+.catSitting.animate {
+    animation: catSittingAnimation 1.5s steps(7) forwards;
+    animation-iteration-count: 1;
+}
+
+@keyframes catSittingAnimation {
+    0% { background-position: 0 0; }
+    100% { background-position: -224px 0; }
+}
+
+.catSitUp {
+    background: url('assets/catSitUp.png') left center;
+    animation: catSitUpAnimation 1s steps(4) forwards;
+    transform: scale(4);
+    image-rendering: pixelated;             
+    image-rendering: crisp-edges;           
+    -ms-interpolation-mode: nearest-neighbor; 
+}
+
+@keyframes catSitUpAnimation {
+    0% { background-position: 0 0; }
+    100% { background-position: -128px 0; }
+}
+
+.catWalking {
+    background: url('assets/catWalking.png') left center;
+    animation: catWalkingAnimation 1s steps(3) forwards 2, catWalkingMovement 2s forwards steps(12);
+    transform: scale(4);
+    image-rendering: pixelated;             
+    image-rendering: crisp-edges;           
+    -ms-interpolation-mode: nearest-neighbor; 
+}
+
+@keyframes catWalkingAnimation {
+    0% { background-position: 0 0; }
+    100% { background-position: -96px 0;}
+}
+
+@keyframes catWalkingMovement {
+    0% { transform: scale(4) translateX(0); }
+    100% { transform: scale(4) translateX(-50px); }
+}
+
+.catSitDown {
+    background: url('assets/catSitUp.png') left center;
+    animation: catSitDownAnimation 1s steps(4) forwards;
+    transform: scale(4);
+}
+
+@keyframes catSitDownAnimation {
+    0% { transform: scale(4) translateX(-50px); background-position: -128px 0; }
+    100% { transform: scale(4) translateX(-50px); background-position: 0 0; }
+}
+
+.button-container[name="submitChildSupportExtendedContainer"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 10px 0;  /* Optional: adds some vertical spacing */
+}
+
+.submitButton[name="submitChildSupportExtended"] {
+    margin-top: 20px;
+    position: absolute;
+    left: 50%;
+    margin-bottom: 100px;
+    transform: translateX(-50%);
+}
+
+/* temp */
+.final-button {
+    font-family: 'Silver';
+    font-size: 30px;
+    border: 3px solid white;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent background */
+    transition: all 0.3s ease;
+    z-index: 1;  /* Ensures button is above video */
+    position: relative;  /* Needed for z-index to work */
+}
+
+.final-button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border: 3px solid black;
+}
+
+.responseButton.selected {
+    background-color: rgb(189, 87, 189);  /* or any color you prefer */
+    color: white;
+    border-color: white;
+    transform: scale(0.98);
+}
+
+.responseButton.loverSelected {
+    background-color: white;  /* or whatever color you prefer */
+    color: black;
+    border-color: white;
+}
+
+@media screen and (min-height: 900px) {
+    .container-wrapper {
+        margin-top: calc((100vh - 850px)); /* Dynamically calculate top margin */
+    }
+}
+
+
+.infoButton {
+    position: absolute; /* Adjust as needed */
+    width: 30px;  /* Adjust size as needed */
+    margin-top: 20px;  
+
+    height: 30px;
+    cursor: pointer;
+    transition: transform 0.5s ease, filter 0.2s ease
+}
+
+.infoButton:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.933));
+}
+
+.infoWrapper {
+    position: fixed;
+    top: 40%;        /* center vertically */
+    left: 15%;       /* center horizontally */
+    transform: translate(-50%, -50%); /* perfect centering */
+    background-color: white;          /* or any color */
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2); /* optional shadow */
+    z-index: 1000;   /* ensures it appears above other content */
+}
+
+/* Optional: Add an overlay behind the info window */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5); /* semi-transparent black */
+    display: none;
+    z-index: 999;
+}
+
+.closeButton {
+    position: relative;
+    left: 90%;
+    background: red;
+    border: 1px solid black;
+    z-index: 2000;
+}
+
+.closeButton:hover {
+    background: white;
+
+}
+
+
+.input-label {
+    display: block;
+    font-size: 20px;
+    color: #888;
+    margin-bottom: 4px;
+    margin-top: 8px;
+}
+
+.primerText {
+    font-family: 'Silver', sans-serif;
+    bottom: 50px;
+    font-size: 20px;
+    color: white;
+    position: relative;
+    width: 100%;
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;  /* Places video behind other content */
+}

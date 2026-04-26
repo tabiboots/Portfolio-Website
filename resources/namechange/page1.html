@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 1</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <script type="module" src="script.js"></script>
+    <script type="module">
+        import formManager from './modules/formManager.js';
+        window.formManager = formManager;
+    </script>
+    <div class="container-wrapper">
+            <div class="gameContainer">
+                <form class="form-wrapper" onsubmit="return false;" style="display: none;">
+                    <div class="form-title">What is your legal full name?</div>
+                <input name="PetitionerName" 
+                       class="formField" 
+                       type="text" 
+                       placeholder="Current legal name"
+                       onblur="dialogueManager.loadDialogue(dialogueSequences.page1.onHoverBox1)">
+                <div class="form-title">What type of court would <br> you like to file in?</div>
+                <img class = infoButton src="./assets/infoButton.png" onclick="showInfoWindow()">
+                <select name="CourtType" 
+                        class="formField" 
+                        onchange="dialogueManager.loadDialogue(dialogueSequences.page1.onClickBox2)">
+                    <option value="">Select a court type</option>
+                    <option value="New York City Civil">New York City Civil</option>
+                    <option value="Supreme">Supreme</option>
+                    <option value="County">County</option>
+                </select>
+                <div class="form-title"">What county are you filing in?</div>
+                <input list="counties" 
+                       name="County" 
+                       class="formField" 
+                       placeholder="Select or type a county"
+                       onblur="this.value ? 
+                              dialogueManager.loadDialogue(dialogueSequences.page1.onClickBox3) : 
+                              dialogueManager.loadDialogue(dialogueSequences.page1.emptyBox3)">
+                <datalist id="counties">
+                    <option value="Albany">
+                    <option value="Allegany">
+                    <option value="Bronx">
+                    <option value="Broome">
+                    <option value="Cattaraugus">
+                    <option value="Cayuga">
+                    <option value="Chautauqua">
+                    <option value="Chemung">
+                    <option value="Chenango">
+                    <option value="Clinton">
+                    <option value="Columbia">
+                    <option value="Cortland">
+                    <option value="Delaware">
+                    <option value="Dutchess">
+                    <option value="Erie">
+                    <option value="Essex">
+                    <option value="Franklin">
+                    <option value="Fulton">
+                    <option value="Genesee">
+                    <option value="Greene">
+                    <option value="Hamilton">
+                    <option value="Herkimer">
+                    <option value="Jefferson">
+                    <option value="Kings">
+                    <option value="Lewis">
+                    <option value="Livingston">
+                    <option value="Madison">
+                    <option value="Monroe">
+                    <option value="Montgomery">
+                    <option value="Nassau">
+                    <option value="New York">
+                    <option value="Niagara">
+                    <option value="Oneida">
+                    <option value="Onondaga">
+                    <option value="Ontario">
+                    <option value="Orange">
+                    <option value="Orleans">
+                    <option value="Oswego">
+                    <option value="Otsego">
+                    <option value="Putnam">
+                    <option value="Queens">
+                    <option value="Rensselaer">
+                    <option value="Richmond">
+                    <option value="Rockland">
+                    <option value="St. Lawrence">
+                    <option value="Saratoga">
+                    <option value="Schenectady">
+                    <option value="Schoharie">
+                    <option value="Schuyler">
+                    <option value="Seneca">
+                    <option value="Steuben">
+                    <option value="Suffolk">
+                    <option value="Sullivan">
+                    <option value="Tioga">
+                    <option value="Tompkins">
+                    <option value="Ulster">
+                    <option value="Warren">
+                    <option value="Washington">
+                    <option value="Wayne">
+                    <option value="Westchester">
+                    <option value="Wyoming">
+                    <option value="Yates">
+                </datalist>
+            </form>
+            <button class="submitButton" onclick="window.location.href='page2.html';" style="visibility: hidden;">Submit</button>
+        </div>
+        <div class="dialogueContainer">
+            <div class="profilePicture">
+                <!-- profile picture content -->
+            </div>
+            <div class="dialogueTextBox">
+                <!-- dialogue text will appear here -->
+            </div>
+        </div>  
+    </div>
+    <div class ="infoWrapper" style="display: none;">
+        <button class="closeButton">X</button>
+        <h1>New York City Civil: <br> For residents of New York City. <br> County/Supreme: <br>For New York residents outside <br>of New York City.<br> Civil/County court is often <br>cheaper to file in. </h1>
+    </div>
+    <script type="module">
+        import { eventBus } from './modules/eventBus.js';
+        eventBus.on('page1Form', () => {
+            document.querySelector('.form-wrapper').style.display = 'block';
+            
+            // Add event listener for county form title
+            document.querySelector('[name="County"]').addEventListener('blur', () => {
+                document.querySelector('.submitButton').style.visibility = 'visible';
+            });
+        });
+
+        window.showInfoWindow = function() {
+            const infoWindow = document.querySelector('.infoWrapper');
+            const closeButton = document.querySelector('.closeButton');
+            closeButton.addEventListener('click', () => {
+                infoWindow.style.display = 'none';
+            });
+            // Simply toggle based on the current display state
+            if (infoWindow.style.display === 'none') {
+                infoWindow.style.display = 'block';
+            } else {
+                infoWindow.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

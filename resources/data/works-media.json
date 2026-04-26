@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-26T21:29:49.823Z",
+  "generatedAt": "2026-04-26T21:55:19.027Z",
   "cloudName": "dhokowg6q",
   "projectFolderRoot": "portfolio",
   "sharedFolderRoot": "shared",
@@ -76,21 +76,10 @@
       },
       "gallery": [
         {
-          "publicId": "iteotw-gallery1_nmcgav",
-          "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777235494/iteotw-gallery1_nmcgav.jpg",
-          "assetFolder": "portfolio/iteotw/images/gallery",
-          "displayName": "iteotw-gallery1_nmcgav",
-          "format": "jpg",
-          "width": 1639,
-          "height": 2457,
-          "bytes": 617878,
-          "resourceType": "image"
-        },
-        {
           "publicId": "iteotw-gallery2_h8ypyk",
           "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777235496/iteotw-gallery2_h8ypyk.jpg",
           "assetFolder": "portfolio/iteotw/images/gallery",
-          "displayName": "iteotw-gallery2_h8ypyk",
+          "displayName": "01-iteotw-gallery_h8ypyk",
           "format": "jpg",
           "width": 2458,
           "height": 1639,
@@ -101,11 +90,22 @@
           "publicId": "iteotw-gallery3_ap3wa1",
           "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777235498/iteotw-gallery3_ap3wa1.jpg",
           "assetFolder": "portfolio/iteotw/images/gallery",
-          "displayName": "iteotw-gallery3_ap3wa1",
+          "displayName": "02-iteotw-gallery1_ap3wa1",
           "format": "jpg",
           "width": 2458,
           "height": 1639,
           "bytes": 609195,
+          "resourceType": "image"
+        },
+        {
+          "publicId": "iteotw-gallery1_nmcgav",
+          "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777235494/iteotw-gallery1_nmcgav.jpg",
+          "assetFolder": "portfolio/iteotw/images/gallery",
+          "displayName": "03-iteotw-gallery_nmcgav",
+          "format": "jpg",
+          "width": 1639,
+          "height": 2457,
+          "bytes": 617878,
           "resourceType": "image"
         }
       ],

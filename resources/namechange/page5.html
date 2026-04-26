@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 5</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container-wrapper">
+        <div class="gameContainer">
+            <div class="form-wrapper" name="brokenForm">
+                <div class="form-title" name="brokenFormTitle">What is your home address?</div>
+                <div class="form-subtitle" name="brokenFormTitle2">Street, city, state, zip, and country.</div>
+                <img src="assets/hammer.png" class="hammer" style="display: none;">
+                <div class="brokenFormFieldFix state-1"></div>
+            </div>
+            <div class="button-container" name="submitCurrentAddressContainer" style="display: none;">
+                <button class="submitButton" name="submitCurrentAddress" onclick="window.dialogueManager.loadDialogue(dialogueSequences.page5.DOBandPlaceofBirth)">Submit</button>
+            </div>
+            <div class="form-wrapper" name="DOBandPlaceofBirth" style="width: 100%; display: none;">
+                <div class="form-title" name="DOBTitle">What is your date of birth?</div>
+                <input type="text" class="formField" name="DOB" placeholder="MM/DD/YYYY" pattern="(0[1-9]|1[0-2])/(0[1-9]|[12]\d|3[01])/([12]\d{3})" maxlength="10" onkeypress="return /[0-9/]/.test(event.key)" oninput="this.value = this.value.replace(/^(\d\d)(\d)$/g,'$1/$2').replace(/^(\d\d\/\d\d)(\d)$/g,'$1/$2')" style="width: 460px;">
+                <div class="form-title" name="PlaceofBirthTitle">What is your place of birth?</div>
+                <div class="form-subtitle" name="PlaceofBirthTitle2"  style="margin-top: -10px;">Street, city, state, zip, and country.</div>
+                <input type="text" class="formField" name="PlaceofBirth" style="width: 460px;">
+            </div>
+            <div class="button-container" name="submitDOBandPlaceofBirthContainer" style="display: none;">
+                <button class="submitButton" name="submitDOBandPlaceofBirth" onclick="window.location.href='page6.html'">Submit</button>
+            </div>
+        </div>
+        <div class="dialogueContainer">
+            <div class="profilePicture">
+                <div class="profileBunny"></div>
+            </div>
+            <div class="dialogueTextBox">
+                <!-- dialogue text will appear here -->
+            </div>
+        </div>
+    </div>
+    <script type="module" src="script.js"></script>
+    <script type="module">
+        import formManager from './modules/formManager.js';
+        import dialogueManager from './modules/dialogueManager.js';
+        import dialogueSequences from './modules/dialogueData.js';
+        window.formManager = formManager;
+        
+        import { eventBus } from './modules/eventBus.js';
+
+        let isHolding = false;
+        const hammer = document.querySelector('.hammer');
+        const brokenField = document.querySelector('.brokenFormFieldFix');
+        const profileBunny = document.querySelector('.profileBunny');
+        let currentState = 1;
+        
+        // Listen for hammerPage5 event
+        eventBus.on('page5Hammer', () => {
+            hammer.style.display = 'block';
+        });
+        
+        // Hammer pickup logic
+        hammer.addEventListener('click', (e) => {
+            if (!isHolding) {
+                isHolding = true;
+                hammer.classList.add('following-cursor');
+                document.body.classList.add('hammer-active');
+                
+                moveHammer(e);
+                document.addEventListener('mousemove', moveHammer);
+            }
+        });
+        
+        // General click handler for hammer animation
+        document.addEventListener('click', (e) => {
+            if (!isHolding) return;
+            
+            // Add swing animation regardless of where clicked
+            hammer.classList.add('swinging');
+            hammer.addEventListener('animationend', () => {
+                hammer.classList.remove('swinging');
+            }, { once: true });
+        });
+        
+        // Form field click handler
+        brokenField.addEventListener('click', (e) => {
+            if (!isHolding) return;
+            
+            currentState++;
+            
+            if (currentState <= 4) {
+                brokenField.classList.remove('state-1', 'state-2', 'state-3', 'state-4');
+                brokenField.classList.add(`state-${currentState}`);
+            } else {
+                setTimeout(() => {
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.className = 'formField';
+                    input.style.width = '460px';
+                    input.style.marginTop = '30px';
+                    input.name = 'CurrentAddress';
+                    brokenField.replaceWith(input);
+                    
+                    // Initialize the new input field with FormManager
+                    const storedValue = localStorage.getItem('CurrentAddress');
+                    if (storedValue) {
+                        input.value = storedValue;
+                    }
+                    
+                    // Add input event listener for storage
+                    input.addEventListener('input', (e) => {
+                        localStorage.setItem('CurrentAddress', e.target.value);
+                    });
+                    
+                    // Add onBlur listener
+                    input.addEventListener('blur', () => {
+                        document.querySelector('[name="submitCurrentAddressContainer"]').style.display = 'block';
+                    });
+                    
+                    document.removeEventListener('mousemove', moveHammer);
+                    document.body.classList.remove('hammer-active');
+                    isHolding = false;
+                    hammer.remove();
+                    window.dialogueManager.loadDialogue(dialogueSequences.page5.formFixed);
+                }, 200);
+            }
+        });
+
+        function moveHammer(e) {
+            hammer.style.left = e.clientX - 25 + 'px';
+            hammer.style.top = e.clientY - 25 + 'px';
+        }
+
+        // Profile bunny click handler
+        profileBunny.addEventListener('click', (e) => {
+            
+            if (!isHolding) {
+                return;
+            }
+            
+            
+            // Remove the class first (forces animation reset)
+            profileBunny.classList.remove('bonked');
+            void profileBunny.offsetWidth;
+            profileBunny.classList.add('bonked');
+            
+            // Use the window.dialogueManager instance
+            window.dialogueManager.loadDialogue(dialogueSequences.page5.bunnyBonked);
+            
+            // Clean up class after animation
+            setTimeout(() => {
+                profileBunny.classList.remove('bonked');
+            }, 200);
+        });
+
+        document.querySelector('[name="submitCurrentAddress"]').addEventListener('click', () => {
+            // Hide the previous elements
+            document.querySelector('[name="submitCurrentAddressContainer"]').style.display = 'none';
+            document.querySelector('[name="CurrentAddress"]').style.display = 'none';
+            document.querySelector('[name="brokenFormTitle"]').style.display = 'none';
+            document.querySelector('[name="brokenFormTitle2"]').style.display = 'none';
+            
+            // Show the DOB and Place of Birth form
+            const dobForm = document.querySelector('[name="DOBandPlaceofBirth"]');
+            dobForm.style.display = 'block';
+            
+            // Add the age calculation listener to the DOB field
+            const dobInput = document.querySelector('[name="DOB"]');
+            dobInput.addEventListener('blur', () => {
+                const age = formManager.calculateAge(dobInput.value);
+                if (age) {
+                    console.log(`User is ${age} years old`);
+                }
+            });
+
+            // Add blur listener for Place of Birth
+            const placeOfBirthInput = document.querySelector('[name="PlaceofBirth"]');
+            placeOfBirthInput.addEventListener('blur', () => {
+                document.querySelector('[name="submitDOBandPlaceofBirthContainer"]').style.display = 'block';
+            });
+
+            document.querySelector('[name="submitDOBandPlaceofBirth"]').addEventListener('click', () => {
+                document.querySelector('[name="DOBandPlaceofBirth"]').style.display = 'none';
+                document.querySelector('[name="submitDOBandPlaceofBirthContainer"]').style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
