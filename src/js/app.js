@@ -1,3 +1,4 @@
+import "../css/style.scss";
 import { renderDisplayBlocks } from "./portfolio.js";
 import { renderWorkDetail } from "./render-work-detail.js";
 
@@ -8,7 +9,7 @@ async function loadJson(url) {
 }
 
 function matchRoute(pathname) {
-  if (pathname === "/") return { name: "home" };
+  if (pathname === "/") return { name: "portfolioIndex" };
   if (pathname === "/about") return { name: "about" };
   if (pathname === "/contact") return { name: "contact" };
   if (pathname === "/portfolio") return { name: "portfolioIndex" };
@@ -40,10 +41,6 @@ function renderSimplePage(container, title, body) {
 
 function renderNotFound(container) {
   renderSimplePage(container, "Not found", "That page doesn’t exist.");
-}
-
-function renderHome(container) {
-  renderSimplePage(container, "Home", "Welcome.");
 }
 
 function renderAbout(container) {
@@ -106,7 +103,6 @@ async function renderRoute() {
 
   const route = matchRoute(window.location.pathname);
 
-  if (route.name === "home") return renderHome(container);
   if (route.name === "about") return renderAbout(container);
   if (route.name === "contact") return renderContact(container);
 
