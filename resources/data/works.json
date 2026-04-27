@@ -1,12 +1,12 @@
 [
   {
-    "slug": "indulge",
+    "slug": "indulge.png",
     "title": "indulge.png",
     "year": 2026,
     "materials": "Acrylic on canvas. 30x50 inches.",
-    "description": "",
+    "description": "An inversion of roles between computational and creative. Indulge.png is a recreation of Robert Lyn Nelson’s painting Indulge after it has been run through a pixel-sorting algorithm. Driven by an interest in exploring a reality where algorithms conceive of art and humans produce it by rote, the work imagines a reversal of authorship: the machine generates the visual logic while the human becomes the executor, faithfully materializing the system’s decisions. The resulting image sits between painting and computation, questioning where intention, creativity, and authorship truly reside.",
     "imageAlt": "indulge.png",
-    "href": "/portfolio/indulge"
+    "href": "/portfolio/indulge.png"
   },
   {
     "slug": "iteotwamtvwto",

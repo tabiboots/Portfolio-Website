@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-26T23:22:13.073Z",
+  "generatedAt": "2026-04-27T19:54:03.471Z",
   "cloudName": "dhokowg6q",
   "projectFolderRoot": "portfolio",
   "sharedFolderRoot": "shared",
@@ -57,6 +57,72 @@
           "resourceType": "video"
         }
       ],
+      "other": []
+    },
+    "indulge.png": {
+      "slug": "indulge.png",
+      "cloudFolder": "indulge.png",
+      "folderPrefix": "portfolio/indulge.png/",
+      "cover": {
+        "publicId": "01-indulge-cover_xsnvo8",
+        "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777319233/01-indulge-cover_xsnvo8.jpg",
+        "assetFolder": "portfolio/indulge.png/images/cover",
+        "displayName": "01-indulge-cover_xsnvo8",
+        "format": "jpg",
+        "width": 1981,
+        "height": 1121,
+        "bytes": 605401,
+        "resourceType": "image"
+      },
+      "gallery": [
+        {
+          "publicId": "02-indulge-detail_fde33h",
+          "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777319326/02-indulge-detail_fde33h.jpg",
+          "assetFolder": "portfolio/indulge.png/images/gallery",
+          "displayName": "02-indulge-detail_fde33h",
+          "format": "jpg",
+          "width": 8064,
+          "height": 6048,
+          "bytes": 9425068,
+          "resourceType": "image"
+        },
+        {
+          "publicId": "03-indulge-detail_imsz7v",
+          "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777319327/03-indulge-detail_imsz7v.jpg",
+          "assetFolder": "portfolio/indulge.png/images/gallery",
+          "displayName": "03-indulge-detail_imsz7v",
+          "format": "jpg",
+          "width": 8064,
+          "height": 6048,
+          "bytes": 8116472,
+          "resourceType": "image"
+        }
+      ],
+      "process": [
+        {
+          "publicId": "04-indulge-process_iyszhz",
+          "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777319399/04-indulge-process_iyszhz.jpg",
+          "assetFolder": "portfolio/indulge.png/images/process",
+          "displayName": "04-indulge-process_iyszhz",
+          "format": "jpg",
+          "width": 421,
+          "height": 252,
+          "bytes": 47572,
+          "resourceType": "image"
+        },
+        {
+          "publicId": "indulge-process-05_ce8doh",
+          "url": "https://res.cloudinary.com/dhokowg6q/image/upload/v1777319412/indulge-process-05_ce8doh.png",
+          "assetFolder": "portfolio/indulge.png/images/process",
+          "displayName": "indulge-process-05_ce8doh",
+          "format": "png",
+          "width": 3600,
+          "height": 2160,
+          "bytes": 7262126,
+          "resourceType": "image"
+        }
+      ],
+      "videos": [],
       "other": []
     },
     "iteotwamtvwto": {
