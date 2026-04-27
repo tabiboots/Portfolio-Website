@@ -51,7 +51,12 @@ function renderAbout(container) {
   const aboutContainer = el("div", { className: "about-container" });
   const aboutTextContainer = el("div", { className: "about-text-container" });
   const headshot = el('div', { className: 'about-headshot-container' });
-  headshot.appendChild(el("img", { className: "headshot-image", attrs: { src: "/resources/img/headshot.jpeg" } }));
+  headshot.appendChild(
+    el("img", {
+      className: "headshot-image",
+      attrs: { src: "https://res.cloudinary.com/dhokowg6q/image/upload/v1777237883/headshot_dfpuvt.jpg" }
+    })
+  );
   aboutContainer.appendChild(headshot);
   aboutTextContainer.appendChild(el('h2', { className: 'about-title', text: 'about: tabi cass' }));
   const aboutText = el("p", { className: "about-text" });
@@ -63,7 +68,36 @@ function renderAbout(container) {
 }
 
 function renderContact(container) {
-  renderSimplePage(container, "Contact", "Contact page content goes here.");
+  container.replaceChildren();
+
+  const wrap = el("div", { className: "contact-container" });
+
+  const list = el("div", { className: "contact-links" });
+
+  list.appendChild(
+    el("a", {
+      className: "contact-link",
+      text: "Email: tabiarchive@gmail.com",
+      attrs: { href: "mailto:tabiarchive@gmail.com" }
+    })
+  );
+  list.appendChild(
+    el("a", {
+      className: "contact-link",
+      text: "Instagram: @tabi.sock",
+      attrs: { href: "https://instagram.com/tabi.sock", target: "_blank", rel: "noopener noreferrer" }
+    })
+  );
+  list.appendChild(
+    el("a", {
+      className: "contact-link",
+      text: "LinkedIn: Tabi Cass",
+      attrs: { href: "https://www.linkedin.com/in/tabi-cass-29a228278/", target: "_blank", rel: "noopener noreferrer" }
+    })
+  );
+
+  wrap.appendChild(list);
+  container.appendChild(wrap);
 }
 
 async function renderRoute() {
