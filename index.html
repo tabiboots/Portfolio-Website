@@ -10,6 +10,10 @@
     <script>
       // Restore client-side route redirected through /404.html on GitHub Pages.
       (function () {
+        // #region agent log
+        const moduleScript = document.querySelector('script[type="module"]');
+        fetch('http://127.0.0.1:7760/ingest/dead568a-e924-44e1-a77e-d89ab58e887f',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'6fc50e'},body:JSON.stringify({sessionId:'6fc50e',runId:'pre-fix-1',hypothesisId:'H1_H2',location:'index.html:13',message:'Head script executed; checking module script target',data:{href:window.location.href,moduleScriptSrc:moduleScript?moduleScript.getAttribute('src'):null,moduleScriptResolved:moduleScript?moduleScript.src:null},timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
         var search = window.location.search;
         if (search.length > 1 && search[1] === "/") {
           var decoded = search
@@ -19,6 +23,9 @@
               return s.replace(/~and~/g, "&");
             })
             .join("?");
+          // #region agent log
+          fetch('http://127.0.0.1:7760/ingest/dead568a-e924-44e1-a77e-d89ab58e887f',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'6fc50e'},body:JSON.stringify({sessionId:'6fc50e',runId:'pre-fix-1',hypothesisId:'H4',location:'index.html:25',message:'Applying 404 redirect restore',data:{search:search,decoded:decoded,pathname:window.location.pathname,hash:window.location.hash},timestamp:Date.now()})}).catch(()=>{});
+          // #endregion
           window.history.replaceState(null, "", window.location.pathname + decoded + window.location.hash);
         }
       })();

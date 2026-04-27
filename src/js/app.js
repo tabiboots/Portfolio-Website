@@ -2,6 +2,10 @@ import "../css/style.scss";
 import { renderDisplayBlocks } from "./portfolio.js";
 import { renderWorkDetail } from "./render-work-detail.js";
 
+// #region agent log
+fetch('http://127.0.0.1:7760/ingest/dead568a-e924-44e1-a77e-d89ab58e887f',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'6fc50e'},body:JSON.stringify({sessionId:'6fc50e',runId:'pre-fix-1',hypothesisId:'H3',location:'src/js/app.js:5',message:'app.js module executed',data:{pathname:window.location.pathname},timestamp:Date.now()})}).catch(()=>{});
+// #endregion
+
 async function loadJson(url) {
   const res = await fetch(url, { headers: { Accept: "application/json" } });
   if (!res.ok) throw new Error(`Failed to load ${url} (${res.status})`);
