@@ -131,6 +131,78 @@ function createAutoplayMutedVideo({ className, src, ariaLabel }) {
   return video;
 }
 
+let touchdesignerRotatorCleanup = null;
+
+function setupTouchdesignerMobileVideoRotator(root) {
+  if (!root) return () => {};
+
+  const flex = root.querySelector(".work-detail-gallery-flex");
+  if (!flex) return () => {};
+
+  const videos = Array.from(flex.querySelectorAll("video"));
+  if (videos.length <= 1) return () => {};
+
+  const mql = window.matchMedia("(max-width: 768px)");
+  if (!mql.matches) return () => {};
+
+  let idx = 0;
+  let intervalId = null;
+
+  const setActive = (nextIdx) => {
+    idx = ((nextIdx % videos.length) + videos.length) % videos.length;
+
+    videos.forEach((video, i) => {
+      const isActive = i === idx;
+      video.classList.toggle("is-active", isActive);
+      video.setAttribute("aria-hidden", isActive ? "false" : "true");
+
+      if (!isActive) {
+        try {
+          video.pause();
+          video.currentTime = 0;
+        } catch {
+          // Ignore errors (e.g. not yet loaded).
+        }
+        return;
+      }
+
+      video.play().catch(() => {
+        // Ignore blocked autoplay attempts.
+      });
+    });
+  };
+
+  setActive(0);
+
+  intervalId = window.setInterval(() => {
+    setActive(idx + 1);
+  }, 6000);
+
+  const onVisibilityChange = () => {
+    if (document.hidden) {
+      window.clearInterval(intervalId);
+      intervalId = null;
+      videos.forEach((v) => v.pause());
+      return;
+    }
+    if (intervalId == null) {
+      intervalId = window.setInterval(() => setActive(idx + 1), 6000);
+      setActive(idx);
+    }
+  };
+
+  document.addEventListener("visibilitychange", onVisibilityChange);
+
+  return () => {
+    if (intervalId != null) window.clearInterval(intervalId);
+    document.removeEventListener("visibilitychange", onVisibilityChange);
+    videos.forEach((video) => {
+      video.classList.remove("is-active");
+      video.removeAttribute("aria-hidden");
+    });
+  };
+}
+
 function renderGallery(container, work, projectMedia, heroMedia) {
   const mediaItems = getInterleavedMediaItems(projectMedia);
   if (!heroMedia?.url && mediaItems.length === 0) return;
@@ -275,12 +347,16 @@ export async function renderWorkDetail(container, work) {
   const mediaManifest = await loadMediaManifest();
   const projectMedia = getProjectMedia(work, mediaManifest);
 
+  touchdesignerRotatorCleanup?.();
+  touchdesignerRotatorCleanup = null;
+
   container.replaceChildren();
   container.appendChild(el("h2", { className: "work-detail-title", text: work.title ?? "Work" }));
 
   const detailHeroMedia = pickDetailHeroMedia(work, projectMedia);
   if (work?.slug === "touchdesigner") {
     renderGalleryFlex(container, work, projectMedia, detailHeroMedia);
+    touchdesignerRotatorCleanup = setupTouchdesignerMobileVideoRotator(container);
   } else {
     renderGallery(container, work, projectMedia, detailHeroMedia);
   }
