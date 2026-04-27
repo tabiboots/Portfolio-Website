@@ -150,6 +150,8 @@ function isInternalLeftClickNavigation(evt, a) {
   if (!href) return false;
   if (href.startsWith("http:") || href.startsWith("https:") || href.startsWith("mailto:") || href.startsWith("tel:")) return false;
   if (href.startsWith("#")) return false;
+  // Let the browser load static assets/pages under /resources (e.g. the namechange game).
+  if (href.startsWith("/resources/")) return false;
 
   // Only intercept same-origin absolute paths like "/about".
   if (!href.startsWith("/")) return false;
