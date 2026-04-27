@@ -70,7 +70,7 @@ a:active {
   display: flex;
   flex-direction: row;
   height: 10vh;
-  min-height: 100px;
+  min-height: 80px;
   background-color: rgba(255, 255, 255);
   overflow: visible;
 }
@@ -113,6 +113,7 @@ a:active {
 
 #nav-button-container-links {
   display: flex;
+  transform: translateY(-15px);
   width: 25%;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -120,6 +121,7 @@ a:active {
 }
 
 #nav-button-container-socials {
+  transform: translateY(-15px);
   width: 15%;
   display: flex;
   flex-flow: row wrap;
@@ -130,22 +132,22 @@ a:active {
 #content-container {
   display: flex;
   margin-top: 0;
-  margin-left: clamp(0.75rem, 3vw, 3rem);
+  margin-left: 2.7vw;
+  width-max: 82vw;
   flex-wrap: nowrap;
   padding-top: clamp(5.5rem, 9vw, 7.25rem);
 }
 
 #content-container-side {
   display: flex;
-  flex-flow: row wrap;
   position: fixed;
+  transform: translateY(10vh);
+  flex-flow: row wrap;
   justify-content: center;
   align-items: start;
-  padding-top: 12vh;
   margin-left: clamp(-0.75rem, -3vw, 3rem);
-  height: 70vh;
-  max-width: 8vw;
-  min-width: 8vw;
+  max-height: 70vh;
+  min-width: 8.5vw;
 }
 
 #content-container-side-about {
@@ -160,7 +162,7 @@ a:active {
 #content-container-main {
   display: flex;
   flex-direction: column;
-  margin-left: 9.333vw;
+  margin-left: 9.3vw;
   width: 85vw;
   align-items: center;
   justify-content: start;
