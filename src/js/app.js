@@ -7,7 +7,13 @@ fetch('http://127.0.0.1:7760/ingest/dead568a-e924-44e1-a77e-d89ab58e887f',{metho
 // #endregion
 
 async function loadJson(url) {
+  // #region agent log
+  fetch('http://127.0.0.1:7760/ingest/dead568a-e924-44e1-a77e-d89ab58e887f',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'6fc50e'},body:JSON.stringify({sessionId:'6fc50e',runId:'pre-fix-2',hypothesisId:'H1_H2_H3',location:'src/js/app.js:10',message:'loadJson start',data:{requestedUrl:url,origin:window.location.origin,pathname:window.location.pathname},timestamp:Date.now()})}).catch(()=>{});
+  // #endregion
   const res = await fetch(url, { headers: { Accept: "application/json" } });
+  // #region agent log
+  fetch('http://127.0.0.1:7760/ingest/dead568a-e924-44e1-a77e-d89ab58e887f',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'6fc50e'},body:JSON.stringify({sessionId:'6fc50e',runId:'pre-fix-2',hypothesisId:'H1_H2_H3_H4',location:'src/js/app.js:13',message:'loadJson response',data:{requestedUrl:url,responseOk:res.ok,status:res.status,responseUrl:res.url,contentType:res.headers.get('content-type')},timestamp:Date.now()})}).catch(()=>{});
+  // #endregion
   if (!res.ok) throw new Error(`Failed to load ${url} (${res.status})`);
   return await res.json();
 }
@@ -106,6 +112,9 @@ async function renderRoute() {
   if (!container) return;
 
   const route = matchRoute(window.location.pathname);
+  // #region agent log
+  fetch('http://127.0.0.1:7760/ingest/dead568a-e924-44e1-a77e-d89ab58e887f',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'6fc50e'},body:JSON.stringify({sessionId:'6fc50e',runId:'pre-fix-2',hypothesisId:'H2_H4_H5',location:'src/js/app.js:116',message:'renderRoute matched',data:{pathname:window.location.pathname,routeName:route?.name,slug:route?.slug ?? null},timestamp:Date.now()})}).catch(()=>{});
+  // #endregion
 
   if (route.name === "about") return renderAbout(container);
   if (route.name === "contact") return renderContact(container);
