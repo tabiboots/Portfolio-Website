@@ -8,6 +8,22 @@
     <link rel="stylesheet" href="/src/css/style.scss">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script>
+      // Restore client-side route redirected through /404.html on GitHub Pages.
+      (function () {
+        var search = window.location.search;
+        if (search.length > 1 && search[1] === "/") {
+          var decoded = search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(null, "", window.location.pathname + decoded + window.location.hash);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="main-container">
