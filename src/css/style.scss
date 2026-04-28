@@ -281,6 +281,11 @@ a:active {
   text-wrap: wrap;
 }
 
+.about-cv-link {
+  margin-top: 1.25rem;
+  font-size: clamp(1rem, 1.7vw, 1.1rem);
+}
+
 @media (min-width: 1024px) {
   .about-container {
     flex-wrap: nowrap;

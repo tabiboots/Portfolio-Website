@@ -70,6 +70,17 @@ function renderAbout(container) {
   aboutText.innerHTML =
     "Tabi Cass is a creative technologist whose work explores the tension between their fascination and unease regarding emerging technologies. Through experimental media, visual metaphor, and conceptual craft, they examine how technological systems shape perception, identity, and interpersonal relationships.<br><br>Tabi graduated from Parsons School of Design in May 2026 with a focus on design and technology and is currently pursuing their MFA at NYU's ITP program.";
   aboutTextContainer.appendChild(aboutText);
+  aboutTextContainer.appendChild(
+    el("a", {
+      className: "about-cv-link",
+      text: "View CV (PDF)",
+      attrs: {
+        href: "/resources/pdf/Tabi%20Cass%20-%202026%20CV.pdf",
+        target: "_blank",
+        rel: "noopener noreferrer"
+      }
+    })
+  );
   aboutContainer.appendChild(aboutTextContainer);
   container.appendChild(aboutContainer);
 }
