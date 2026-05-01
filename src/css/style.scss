@@ -397,6 +397,7 @@ a:active {
   height: clamp(180px, 22vw, 320px);
   object-fit: contain;
   object-position: center;
+  cursor: zoom-in;
 }
 
 .work-detail-gallery-track > video,
@@ -409,6 +410,7 @@ a:active {
   background: transparent;
   border: 0;
   outline: none;
+  cursor: zoom-in;
 }
 
 .work-detail-gallery-flex {
@@ -435,6 +437,7 @@ a:active {
   object-fit: contain;
   object-position: center;
   display: block;
+  cursor: zoom-in;
 }
 
 .work-detail-gallery-flex > video,
@@ -451,6 +454,52 @@ a:active {
   border: 0;
   outline: none;
   display: block;
+  cursor: zoom-in;
+}
+
+.work-detail-gallery-track > img:focus-visible,
+.work-detail-gallery-track > video:focus-visible,
+.work-detail-gallery-flex > img:focus-visible,
+.work-detail-gallery-flex > video:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+.work-detail-gallery-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 9998;
+}
+
+.work-detail-gallery-backdrop.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.work-detail-gallery-track > img.is-media-focused,
+.work-detail-gallery-track > video.is-media-focused,
+.work-detail-gallery-flex > img.is-media-focused,
+.work-detail-gallery-flex > video.is-media-focused {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: auto;
+  max-width: min(90vw, 1200px);
+  max-height: 85vh;
+  object-fit: contain;
+  z-index: 9999;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  cursor: zoom-out;
+}
+
+.work-detail-media-focus-lock {
+  overflow: hidden;
 }
 
 .contact-container{

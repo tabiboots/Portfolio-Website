@@ -133,6 +133,82 @@ function createAutoplayMutedVideo({ className, src, ariaLabel }) {
 
 let touchdesignerRotatorCleanup = null;
 
+function setupFocusedMediaMode(section) {
+  if (!section) return;
+
+  const mediaNodes = Array.from(
+    section.querySelectorAll(
+      ".work-detail-gallery-track > img, .work-detail-gallery-track > video, .work-detail-gallery-flex > img, .work-detail-gallery-flex > video"
+    )
+  );
+  if (mediaNodes.length === 0) return;
+
+  const backdrop = el("div", { className: "work-detail-gallery-backdrop" });
+  section.appendChild(backdrop);
+
+  let activeIndex = -1;
+
+  const clearFocusedMedia = () => {
+    if (activeIndex < 0) return;
+    const activeNode = mediaNodes[activeIndex];
+    activeNode.classList.remove("is-media-focused");
+    activeIndex = -1;
+    backdrop.classList.remove("is-active");
+    document.body.classList.remove("work-detail-media-focus-lock");
+  };
+
+  const focusMediaAtIndex = (nextIndex) => {
+    const normalizedIndex = ((nextIndex % mediaNodes.length) + mediaNodes.length) % mediaNodes.length;
+    if (activeIndex >= 0) {
+      mediaNodes[activeIndex].classList.remove("is-media-focused");
+    }
+
+    activeIndex = normalizedIndex;
+    const activeNode = mediaNodes[activeIndex];
+    activeNode.classList.add("is-media-focused");
+    backdrop.classList.add("is-active");
+    document.body.classList.add("work-detail-media-focus-lock");
+    activeNode.focus({ preventScroll: true });
+  };
+
+  mediaNodes.forEach((node, index) => {
+    node.setAttribute("tabindex", "0");
+    node.setAttribute("role", "button");
+    node.setAttribute("aria-label", `${node.getAttribute("aria-label") ?? "Media item"} (open focused view)`);
+
+    node.addEventListener("click", () => {
+      focusMediaAtIndex(index);
+    });
+
+    node.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        focusMediaAtIndex(index);
+      }
+    });
+  });
+
+  backdrop.addEventListener("click", clearFocusedMedia);
+
+  section.addEventListener("keydown", (event) => {
+    if (activeIndex < 0) return;
+    if (event.key === "Escape") {
+      event.preventDefault();
+      clearFocusedMedia();
+      return;
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      focusMediaAtIndex(activeIndex + 1);
+      return;
+    }
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      focusMediaAtIndex(activeIndex - 1);
+    }
+  });
+}
+
 function setupTouchdesignerMobileVideoRotator(root) {
   if (!root) return () => {};
 
@@ -277,6 +353,7 @@ function renderGallery(container, work, projectMedia, heroMedia) {
   carousel.appendChild(track);
   carousel.appendChild(nextBtn);
   section.appendChild(carousel);
+  setupFocusedMediaMode(section);
   container.appendChild(section);
 }
 
@@ -331,6 +408,7 @@ function renderGalleryFlex(container, work, projectMedia, heroMedia) {
   }
 
   section.appendChild(flexGrid);
+  setupFocusedMediaMode(section);
   container.appendChild(section);
 }
 
@@ -349,6 +427,7 @@ export async function renderWorkDetail(container, work) {
 
   touchdesignerRotatorCleanup?.();
   touchdesignerRotatorCleanup = null;
+  document.body.classList.remove("work-detail-media-focus-lock");
 
   container.replaceChildren();
   container.appendChild(el("h2", { className: "work-detail-title", text: work.title ?? "Work" }));
