@@ -144,31 +144,69 @@ function setupFocusedMediaMode(section) {
   if (mediaNodes.length === 0) return;
 
   const backdrop = el("div", { className: "work-detail-gallery-backdrop" });
+  const spotlight = el("div", {
+    className: "work-detail-gallery-spotlight",
+    attrs: { "aria-hidden": "true" }
+  });
   section.appendChild(backdrop);
+  section.appendChild(spotlight);
 
   let activeIndex = -1;
+
+  const buildSpotlightMedia = (sourceNode) => {
+    if (!sourceNode) return null;
+
+    if (sourceNode.tagName === "VIDEO") {
+      const video = document.createElement("video");
+      video.src = sourceNode.currentSrc || sourceNode.src;
+      video.autoplay = true;
+      video.muted = false;
+      video.defaultMuted = false;
+      video.loop = true;
+      video.playsInline = true;
+      video.controls = false;
+      video.className = "work-detail-gallery-spotlight-media";
+      video.setAttribute("loop", "");
+      video.setAttribute("playsinline", "");
+      video.setAttribute("autoplay", "");
+      video.play().catch(() => {
+        // Ignore blocked autoplay attempts.
+      });
+      return video;
+    }
+
+    return el("img", {
+      className: "work-detail-gallery-spotlight-media",
+      attrs: {
+        src: sourceNode.currentSrc || sourceNode.src,
+        alt: sourceNode.alt ?? "Focused media"
+      }
+    });
+  };
 
   const clearFocusedMedia = () => {
     if (activeIndex < 0) return;
     const activeNode = mediaNodes[activeIndex];
-    activeNode.classList.remove("is-media-focused");
     activeIndex = -1;
     backdrop.classList.remove("is-active");
+    spotlight.classList.remove("is-active");
+    spotlight.setAttribute("aria-hidden", "true");
+    spotlight.replaceChildren();
     document.body.classList.remove("work-detail-media-focus-lock");
+    activeNode.focus({ preventScroll: true });
   };
 
   const focusMediaAtIndex = (nextIndex) => {
     const normalizedIndex = ((nextIndex % mediaNodes.length) + mediaNodes.length) % mediaNodes.length;
-    if (activeIndex >= 0) {
-      mediaNodes[activeIndex].classList.remove("is-media-focused");
-    }
-
     activeIndex = normalizedIndex;
     const activeNode = mediaNodes[activeIndex];
-    activeNode.classList.add("is-media-focused");
+    const spotlightMedia = buildSpotlightMedia(activeNode);
+    if (!spotlightMedia) return;
+    spotlight.replaceChildren(spotlightMedia);
     backdrop.classList.add("is-active");
+    spotlight.classList.add("is-active");
+    spotlight.setAttribute("aria-hidden", "false");
     document.body.classList.add("work-detail-media-focus-lock");
-    activeNode.focus({ preventScroll: true });
   };
 
   mediaNodes.forEach((node, index) => {
@@ -186,6 +224,13 @@ function setupFocusedMediaMode(section) {
         focusMediaAtIndex(index);
       }
     });
+
+    if (node.tagName === "VIDEO") {
+      // Keep original carousel videos muted; audio belongs to spotlight video.
+      node.muted = true;
+      node.defaultMuted = true;
+      node.setAttribute("muted", "");
+    }
   });
 
   backdrop.addEventListener("click", clearFocusedMedia);

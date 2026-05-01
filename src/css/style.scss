@@ -392,8 +392,9 @@ a:active {
 
 .work-detail-gallery-track > img,
 .work-detail-gallery-image {
-  flex: 0 0 calc((100% - 2rem) / 3);
-  width: calc((100% - 2rem) / 3);
+  flex: 0 0 auto;
+  width: auto;
+  max-width: min(60vw, 520px);
   height: clamp(180px, 22vw, 320px);
   object-fit: contain;
   object-position: center;
@@ -402,8 +403,9 @@ a:active {
 
 .work-detail-gallery-track > video,
 .work-detail-gallery-video {
-  flex: 0 0 calc((100% - 2rem) / 2);
-  width: calc((100% - 2rem) / 2);
+  flex: 0 0 auto;
+  width: auto;
+  max-width: min(65vw, 600px);
   height: clamp(180px, 22vw, 320px);
   object-fit: contain;
   object-position: center;
@@ -480,14 +482,24 @@ a:active {
   pointer-events: auto;
 }
 
-.work-detail-gallery-track > img.is-media-focused,
-.work-detail-gallery-track > video.is-media-focused,
-.work-detail-gallery-flex > img.is-media-focused,
-.work-detail-gallery-flex > video.is-media-focused {
+.work-detail-gallery-spotlight {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 9999;
+}
+
+.work-detail-gallery-spotlight.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.work-detail-gallery-spotlight-media {
+  display: block;
   width: auto;
   height: auto;
   max-width: min(90vw, 1200px);
@@ -495,7 +507,6 @@ a:active {
   object-fit: contain;
   z-index: 9999;
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
-  cursor: zoom-out;
 }
 
 .work-detail-media-focus-lock {
@@ -571,8 +582,8 @@ height: 70%;
   }
   .work-detail-gallery-track > img,
 .work-detail-gallery-image {
-  flex: 0 0 calc((100% - 2rem));
-  max-width: 80vw;
+  flex: 0 0 auto;
+  max-width: 85vw;
   width: auto;
   max-height: 30vh;
   height: auto;
@@ -583,8 +594,8 @@ height: 70%;
 
 .work-detail-gallery-track > video,
 .work-detail-gallery-video {
-  flex: 0 0 calc((100% - 2rem));
-  max-width: 80vw;
+  flex: 0 0 auto;
+  max-width: 85vw;
   width: auto;
   max-height: 30vh;
   height: auto;
