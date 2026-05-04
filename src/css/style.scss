@@ -133,7 +133,7 @@ a:active {
   display: flex;
   margin-top: 0;
   margin-left: 2.7vw;
-  width-max: 82vw;
+  max-width: 82vw;
   flex-wrap: nowrap;
   padding-top: clamp(5.5rem, 9vw, 7.25rem);
 }
