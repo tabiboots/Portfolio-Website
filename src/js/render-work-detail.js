@@ -94,11 +94,17 @@ function getInterleavedMediaItems(projectMedia) {
     ...(Array.isArray(projectMedia.process) ? projectMedia.process : [])
   ]
     .filter((item) => item?.url)
-    .map((item) => ({ ...item, resourceType: "image" }));
+    .map((item) => ({
+      ...item,
+      resourceType: item.resourceType ?? inferResourceTypeFromUrl(item.url)
+    }));
 
   const videoItems = (Array.isArray(projectMedia.videos) ? projectMedia.videos : [])
     .filter((item) => item?.url)
-    .map((item) => ({ ...item, resourceType: "video" }));
+    .map((item) => ({
+      ...item,
+      resourceType: item.resourceType ?? inferResourceTypeFromUrl(item.url)
+    }));
 
   return [...imageItems, ...videoItems].sort(compareMediaItems);
 }

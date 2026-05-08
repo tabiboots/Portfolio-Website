@@ -122,7 +122,8 @@ async function fetchProjectAssets(slug) {
   };
 
   for (const asset of [...images, ...videos]) {
-    const key = classifyAsset(asset.asset_folder, asset.public_id);
+    const key =
+      asset.resource_type === "video" ? "videos" : classifyAsset(asset.asset_folder, asset.public_id);
     buckets[key].push(toAssetRecord(asset));
   }
 

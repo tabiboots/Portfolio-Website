@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-27T19:54:03.471Z",
+  "generatedAt": "2026-05-08T13:17:12.165Z",
   "cloudName": "dhokowg6q",
   "projectFolderRoot": "portfolio",
   "sharedFolderRoot": "shared",
@@ -109,6 +109,17 @@
           "height": 252,
           "bytes": 47572,
           "resourceType": "image"
+        },
+        {
+          "publicId": "06-indulge-process_vjbaoc",
+          "url": "https://res.cloudinary.com/dhokowg6q/video/upload/v1778245933/06-indulge-process_vjbaoc.mp4",
+          "assetFolder": "portfolio/indulge.png/images/process",
+          "displayName": "06-indulge-process_vjbaoc",
+          "format": "mp4",
+          "width": 954,
+          "height": 720,
+          "bytes": 2418891,
+          "resourceType": "video"
         },
         {
           "publicId": "indulge-process-05_ce8doh",
